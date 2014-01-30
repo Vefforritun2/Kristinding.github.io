@@ -1,19 +1,25 @@
 var Shape = Base.extend({
-	constructor: function(x, y, color){
-		this.x = x;
-		this.y = y;
+	constructor: function(startX, startY, endX, endY, color){
+		this.startX = startX;
+		this.startY = startY;
+		this.endX = endX;
+		this.endY = endY;
 		this.color = color;
 	}
 });
 
 //Instance af striki
 var Line = Shape.extend({
-	constructor: function(x, y, color){
-		this.base(x, y,color);
+	constructor: function(startX, startY, endX, endY, color){
+		this.base(startX, startY, endX, endY, color);
+		
 	},
 	draw: function (context) {
 		context.beginPath();
-		
+		context.moveTo(this.startX, this.startY);
+		context.lineTo(this.endX, this.endY);
+		context.stroke();
+		console.log("hello");
 	}
 });
 

@@ -4,8 +4,8 @@ function createRect(x,y) {
 }
 
 //create new line
-function createLine(x,y){
-	return new Line(x, y, Whiteboard.currentColor);
+function createLine(x,y, endX, endY){
+	return new Line(x, y, endX, endY, Whiteboard.currentColor);
 }
 
 //draw on the board
@@ -23,6 +23,7 @@ var Whiteboard = {
 		for (var i = 0 ; i < this.shape.length ; i++ )
 		{
 			this.shape[i].draw(context);
+			console.log(this.shape[i]);
 		}
 	}
 };
@@ -33,6 +34,8 @@ $(document).ready(function(){
 
 	var startX = 0;
 	var startY = 0;
+	var endX = 0;
+	var endY = 0;
 	var isDrawing = false;
 	var nextShape = "Pen";
 
@@ -46,34 +49,27 @@ $(document).ready(function(){
 	$("#myCanvas").mousedown(function(e){
 
 		//gives us the x and y coordinate where the mouse is pressed down
-		var x = e.pageX - this.offsetLeft;
-		var y = e.pageY - this.offsetTop;
-		//create the next shape
-		var shape = nextShape(x, y);
-		//adding the new shape to the Whiteboard
-		Whiteboard.shape.push(shape);
-
-		startX = x;
-		startY = y;
-
+		startX = e.pageX - this.offsetLeft;
+		startY = e.pageY - this.offsetTop;
 		isDrawing = true;
 	});
 
 	$("#myCanvas").mousemove(function(e) {
 
 		if( isDrawing === true ){
-			var x = e.pageX - this.offsetLeft;
-			var y = e.pageY - this.offsetTop;
+			endX = e.pageX - this.offsetLeft;
+			endY = e.pageY - this.offsetTop;
 			context.clearRect(0, 0, 500, 500);
-
-			context.beginPath();
-			context.moveTo(startX, startY);
-			context.lineTo(x,y);
-			context.stroke();
+			Whiteboard.redraw(context);						
 		}
 	});
 
 	$("#myCanvas").mouseup(function(e) {
 		isDrawing = false;
+
+		//create the next shape
+		var shape = nextShape(startX, startY, endX, endY);
+		//adding the new shape to the Whiteboard
+		Whiteboard.shape.push(shape);
 	});
 });
