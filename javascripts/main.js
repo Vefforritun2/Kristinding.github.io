@@ -3,8 +3,13 @@ function createRect(x,y) {
 	return new Rect(x,y,...);
 }
 
+//create new line
+function createLine(x,y){
+	return new Line(x,y, Whiteboard.currentColor);
+}
+
 //draw on the board
-Whiteboard = {
+var Whiteboard = {
 	currentColor: "Black",  
 	currentFontName: "Courier New",
 	//currentFontSize: ....
@@ -47,6 +52,9 @@ $(document).ready(function(){
 
 		//create the next shape
 		var shape = nextShape(x,y);
+
+		//adding the new shape to the whiteboard
+		Whiteboard.shape.push(shape);
 
 		startX = x;
 		startY = y;
