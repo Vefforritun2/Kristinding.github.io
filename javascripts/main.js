@@ -27,7 +27,6 @@ var Whiteboard = {
 	}
 };
 
-
 $(document).ready(function(){
 	var canvas = document.getElementById("myCanvas");
 	var context = canvas.getContext("2d");
@@ -43,10 +42,7 @@ $(document).ready(function(){
 		nextShape = eval(factory);
 	});
 
-
 	$("#myCanvas").mousedown(function(e){
-
-
 		var x = e.pageX - this.offsetLeft;
 		var y = e.pageY - this.offsetTop;
 
@@ -60,17 +56,13 @@ $(document).ready(function(){
 		startY = y;
 
 		isDrawing = true;
-
 	});
 
 	$("#myCanvas").mousemove(function(e) {
 
 		if( isDrawing === true ){
-
 			var x = e.pageX - this.offsetLeft;
 			var y = e.pageY - this.offsetTop;
-
-
 
 			context.clearRect(0, 0, 500, 500);
 
@@ -78,16 +70,10 @@ $(document).ready(function(){
 			context.moveTo(startX, startY);
 			context.lineTo(x,y);
 			context.stroke();
-
 		}
-
 	});
 
 	$("#myCanvas").mouseup(function(e) {
-
 		isDrawing = false;
-
 	});
-
-
 });
