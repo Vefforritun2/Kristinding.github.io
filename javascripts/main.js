@@ -40,7 +40,7 @@ $(document).ready(function(){
 	$(".btnShape").click(function(e){
 		var factory = $(this).attr("data-shape");
 		//we need to change the factory string to function
-		console.log("yes");
+		alert("yes");
 		nextShape = eval(factory);
 	});
 
