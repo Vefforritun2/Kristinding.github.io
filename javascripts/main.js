@@ -5,7 +5,7 @@ function createRect(x,y) {
 
 //create new line
 function createLine(x,y){
-	return new Line(x,y, Whiteboard.currentColor);
+	return new Line(x, y, Whiteboard.currentColor);
 }
 
 //draw on the board
@@ -31,7 +31,6 @@ $(document).ready(function(){
 	var canvas = document.getElementById("myCanvas");
 	var context = canvas.getContext("2d");
 
-	alert("hello");
 	var startX = 0;
 	var startY = 0;
 	var isDrawing = false;
@@ -50,7 +49,7 @@ $(document).ready(function(){
 		var x = e.pageX - this.offsetLeft;
 		var y = e.pageY - this.offsetTop;
 		//create the next shape
-		var shape = nextShape(x,y);
+		var shape = nextShape(x, y);
 		console.log(shape);
 		//adding the new shape to the Whiteboard
 		Whiteboard.shape.push(shape);
