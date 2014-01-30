@@ -1,2 +1,0 @@
-Skilaverkefni1
-==============
