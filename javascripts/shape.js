@@ -7,7 +7,6 @@ var Shape = Base.extend({
 		this.color = color;
 	}
 });
-
 //Instance af striki
 var Line = Shape.extend({
 	constructor: function(startX, startY, endX, endY, color){
@@ -22,7 +21,6 @@ var Line = Shape.extend({
 		console.log("hello");
 	}
 });
-
 //Instance af kassa
 //var Rect = Shape.extend({
 //	constructor: function(x, y, color, lineColor, endX, endY){
