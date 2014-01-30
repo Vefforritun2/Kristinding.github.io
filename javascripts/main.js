@@ -1,6 +1,6 @@
 //create new Rectangle
 function createRect(x,y) {
-	return new Rect(x,y,...);
+	//return new Rect(x,y,...);
 }
 
 //create new line
@@ -18,7 +18,7 @@ var Whiteboard = {
 	shape: [], 
 
 	//draw all the shapes
-	redraw. function(context){
+	redraw: function(context){
 
 		for (var i = 0 ; i < this.shape.length ; i++ )
 		{
