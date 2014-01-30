@@ -31,6 +31,7 @@ $(document).ready(function(){
 	var canvas = document.getElementById("myCanvas");
 	var context = canvas.getContext("2d");
 
+	alert("hello");
 	var startX = 0;
 	var startY = 0;
 	var isDrawing = false;
@@ -40,7 +41,6 @@ $(document).ready(function(){
 	$(".btnShape").click(function(e){
 		var factory = $(this).attr("data-shape");
 		//we need to change the factory string to function
-		alert("yes");
 		nextShape = eval(factory);
 	});
 
@@ -51,7 +51,7 @@ $(document).ready(function(){
 		var y = e.pageY - this.offsetTop;
 		//create the next shape
 		var shape = nextShape(x,y);
-
+		console.log(shape);
 		//adding the new shape to the Whiteboard
 		Whiteboard.shape.push(shape);
 

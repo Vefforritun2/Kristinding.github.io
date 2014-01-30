@@ -10,6 +10,9 @@ var Shape = Base.extend({
 var Line = Shape.extend({
 	constructor: function(x, y, color){
 		this.base(x,y,color);
+	},
+	draw: function (context) {
+		
 	}
 });
 
