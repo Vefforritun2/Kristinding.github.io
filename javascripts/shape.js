@@ -12,7 +12,8 @@ var Line = Shape.extend({
 		this.base(x, y,color);
 	},
 	draw: function (context) {
-
+		context.beginPath();
+		
 	}
 });
 

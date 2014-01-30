@@ -50,7 +50,6 @@ $(document).ready(function(){
 		var y = e.pageY - this.offsetTop;
 		//create the next shape
 		var shape = nextShape(x, y);
-		console.log(shape);
 		//adding the new shape to the Whiteboard
 		Whiteboard.shape.push(shape);
 
@@ -65,7 +64,6 @@ $(document).ready(function(){
 		if( isDrawing === true ){
 			var x = e.pageX - this.offsetLeft;
 			var y = e.pageY - this.offsetTop;
-
 			context.clearRect(0, 0, 500, 500);
 
 			context.beginPath();
