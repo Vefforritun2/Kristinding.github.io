@@ -36,7 +36,7 @@ $(document).ready(function(){
 	var isDrawing = false;
 	var nextShape = "Pen";
 
-	//Event handler for clickcing a button
+	//Event handler for clicking a shape
 	$(".btnShape").click(function(e){
 		var factory = $(this).attr("data-shape");
 		//we need to change the factory string to function
@@ -45,13 +45,14 @@ $(document).ready(function(){
 	});
 
 	$("#myCanvas").mousedown(function(e){
+
+		//gives us the x and y coordinate where the mouse is pressed down
 		var x = e.pageX - this.offsetLeft;
 		var y = e.pageY - this.offsetTop;
-
 		//create the next shape
 		var shape = nextShape(x,y);
 
-		//adding the new shape to the whiteboard
+		//adding the new shape to the Whiteboard
 		Whiteboard.shape.push(shape);
 
 		startX = x;
