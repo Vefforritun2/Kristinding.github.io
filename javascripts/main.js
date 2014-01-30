@@ -4,8 +4,8 @@ function createRect(x,y) {
 }
 
 //create new line
-function createLine(x,y, endX, endY){
-	return new Line(x, y, endX, endY, Whiteboard.currentColor);
+function createLine(startX,startY, endX, endY){
+	return new Line(startX, startY, endX, endY, Whiteboard.currentColor);
 }
 
 //draw on the board
@@ -47,7 +47,6 @@ $(document).ready(function(){
 	});
 
 	$("#myCanvas").mousedown(function(e){
-
 		//gives us the x and y coordinate where the mouse is pressed down
 		startX = e.pageX - this.offsetLeft;
 		startY = e.pageY - this.offsetTop;
@@ -59,17 +58,21 @@ $(document).ready(function(){
 		if( isDrawing === true ){
 			endX = e.pageX - this.offsetLeft;
 			endY = e.pageY - this.offsetTop;
-			context.clearRect(0, 0, 500, 500);
+			context.clearRect(0, 0, 500, 500);	
+			context.beginPath();
+			context.moveTo(startX, startY);
+			context.lineTo(endX, endY);
+			context.stroke();	
 			Whiteboard.redraw(context);						
 		}
 	});
 
 	$("#myCanvas").mouseup(function(e) {
 		isDrawing = false;
-
 		//create the next shape
 		var shape = nextShape(startX, startY, endX, endY);
 		//adding the new shape to the Whiteboard
 		Whiteboard.shape.push(shape);
+
 	});
 });
