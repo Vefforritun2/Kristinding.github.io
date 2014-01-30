@@ -7,7 +7,7 @@ var Shape = Base.extend({
 });
 
 //Instance af striki
-var line = Shape.extend({
+var Line = Shape.extend({
 	constructor: function(x, y, color){
 		this.base(x,y,color);
 	}
