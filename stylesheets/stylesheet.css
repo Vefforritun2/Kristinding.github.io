@@ -3,6 +3,11 @@ html
   padding-left: 30px;
 }
 
+h1
+{
+  text-align: center;
+}
+
 #myCanvas
 {
   border:1px solid black; 
@@ -14,4 +19,11 @@ html
 .btnShape
 {
   float: right;
+}
+
+#buttons
+{
+  width: 50px;
+  float: right;
+  padding-right: 100px;
 }
