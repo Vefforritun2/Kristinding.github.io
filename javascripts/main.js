@@ -34,11 +34,13 @@ $(document).ready(function(){
 	var startX = 0;
 	var startY = 0;
 	var isDrawing = false;
+	var nextShape = "Pen";
 
 	//Event handler for clickcing a button
 	$(".btnShape").click(function(e){
 		var factory = $(this).attr("data-shape");
 		//we need to change the factory string to function
+		console.log("yes");
 		nextShape = eval(factory);
 	});
 
