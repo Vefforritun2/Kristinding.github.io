@@ -47,10 +47,14 @@ $(document).ready(function(){
 
 	$("#textSubmit").click(function(e){
 		textString = $("#textBox").val();
+		$("#textBox").val('');
 		$("#writeText").hide();
-		currentShape.text=textString;
-		Whiteboard.shape.push(currentShape);
-		Whiteboard.redraw(context);	
+		if(textString != "undefined")
+		{
+			currentShape.text=textString;
+			Whiteboard.shape.push(currentShape);
+			Whiteboard.redraw(context);	
+		}	
 	});
 
 	//Event handler for clicking a shape
@@ -62,12 +66,16 @@ $(document).ready(function(){
 	});
 	$("#myCanvas").mousedown(function(e){
 		//gives us the x and y coordinate where the mouse is pressed down
-		if(factory === "createText")
-		{
-			$("#writeText").show();
-		}
 		var startX = e.pageX - this.offsetLeft;
 		var startY = e.pageY - this.offsetTop;
+
+		if(factory === "createText")
+		{
+			$("#writeText").offset({ top: 0, left: 0});
+			$("#writeText").offset({ top: e.pageY, left: e.pageX});
+			$("#writeText").show();
+		}
+
 		isDrawing = true;
 		currentShape = nextShape(startX, startY);
 	});
@@ -76,14 +84,21 @@ $(document).ready(function(){
 			currentShape.endX = e.pageX - this.offsetLeft;
 			currentShape.endY = e.pageY - this.offsetTop;
 			context.clearRect(0, 0, 500, 500);	
-			currentShape.draw(context);
-			Whiteboard.redraw(context);	
+			if(factory != createText)
+			{
+				currentShape.draw(context);
+				Whiteboard.redraw(context);	
+			}	
 		}
 	});
 	$("#myCanvas").mouseup(function(e) {
 		isDrawing = false;
 		//adding the new shape to the Whiteboard
-		Whiteboard.shape.push(currentShape);
+
+		if(factory != createText)
+		{
+			Whiteboard.shape.push(currentShape);
+		}	
 	});
 
 });
