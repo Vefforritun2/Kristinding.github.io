@@ -50,8 +50,9 @@ constructor: function(startX, startY, color, font){
 	this.font = font;
 	},
 	draw: function(context) {
+		console.fillStyle= this.color;
 		context.fillText("sample string", this.startX, this.startY);
-
+		
 		//context.measureText();
 	}
 });
