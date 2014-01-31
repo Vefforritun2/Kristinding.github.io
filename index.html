@@ -27,13 +27,45 @@
       <div id="canvasDiv"> 
         <canvas id = "myCanvas" height = "410" width = "700">
         </canvas>
-      </div>
-      
+      </div>      
       <div id="fixButtons">
           <button id = "btn6" class = "btnShape" data-shape = "createRect"> Undo </button>
           <button id = "btn7" class = "btnShape" data-shape = "createRect"> Redo </button>
-          <button id = "btn8" class = "btnShape" > Clean </button>
+          <button id = "btn8"> Clean </button>
       </div>
+
+      <div id = "changeButtons">
+          <select>
+            <option selected="selected" value="Black">Black</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Red">Red</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Magenta">Pink</option>
+          </select>
+
+          <select>
+            <option value="10">10</option>
+            <option selected="selected" value="12">12</option>
+            <option value="14">14</option>
+            <option value="16">16</option>
+            <option value="18">18</option>
+            <option value="20">20</option>
+            <option value="22">22</option>
+            <option value="24">24</option>
+          </select>
+
+          <select>
+            <option value="Arial, Helvetica, sans-serif">Arial</option>
+            <option selected="selected" value="‘Courier New’, Courier, monospace">Courier New</option>
+            <option value="Georgia, Serif">Georgia</option>
+            <option value="Gill Sans / Gill Sans MT, sans-serif">Gill Sans</option>
+            <option value="‘Times New Roman’, Times, serif">Times new Roman</option>
+            <option value="‘Trebuchet MS’, Helvetica, sans-serif">Trebuchet MS</option>
+            <option value="Verdana, Geneva, sans-serif">Verdana</option>
+          </select>
+      </div>  
+
       <div id="writeText">     
         <input type="text" id="textBox" placeholder="Write here!"/> 
         <input type="submit" value="Done writing!" id="textSubmit">
