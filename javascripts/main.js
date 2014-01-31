@@ -17,7 +17,12 @@ function createText(startX, startY) {
 }
 //create new Pen
 function createPen(startX, startY) {
-	return new Text(startX, startY, Whiteboard.currentColor)
+	return new Pen(startX, startY, Whiteboard.currentColor);
+}
+//create point
+function Point(startX, startY){
+	this.startX = startX;
+	this.startY = startY;
 }
 
 //draw on the board
@@ -39,13 +44,16 @@ var Whiteboard = {
 $(document).ready(function(){
 	var canvas = document.getElementById("myCanvas");
 	var context = canvas.getContext("2d");
-	//var startX = 0;
-	//var startY = 0;
+	var defaultMode = true;
+	var startX = 0;
+	var startY = 0;
 	var isDrawing = false;
 	var nextShape = "Pen";
 	var currentShape;
 	var factory;
 	var textString;
+	//var arrayOfGrids;
+	//var i;
 
 	$("#textSubmit").click(function(e){
 		textString = $("#textBox").val();
@@ -61,7 +69,6 @@ $(document).ready(function(){
 		}
 		var backX = -e.pageX + 170; //útfæra betur
 		var backY = -e.pageY + 7;  	//útfæra betur
-		console.log(this.offsetLeft);
 		$("#writeText").offset({ top: backY, left:  backX});	
 	});
 
@@ -70,24 +77,32 @@ $(document).ready(function(){
 		factory = $(this).attr("data-shape");
 		//we need to change the factory string to function
 		nextShape = eval(factory);
-
+		defaultMode = false;
 	});
 	$("#myCanvas").mousedown(function(e){
+
 		//gives us the x and y coordinate where the mouse is pressed down
-		var startX = e.pageX - this.offsetLeft;
-		var startY = e.pageY - this.offsetTop;
+		startX = e.pageX - this.offsetLeft;
+		startY = e.pageY - this.offsetTop;
 		isDrawing = true;
-		currentShape = nextShape(startX, startY);
-		if(factory === "createText")
-		{
-			//$("#writeText").offset({ top: 0, left: 0});
-			$("#writeText").offset({ top: e.pageY, left: e.pageX});
-			$("#writeText").show();
+
+		if( !defaultMode ){
+			
+			currentShape = nextShape(startX, startY);
+			if(factory === "createText")
+			{
+				//$("#writeText").offset({ top: 0, left: 0});
+				$("#writeText").offset({ top: e.pageY, left: e.pageX});
+				$("#writeText").show();
+			}
+			defaultMode = false;
 		}
+
+		
 	});
 	$("#myCanvas").mousemove(function(e) {
 		if( isDrawing === true ){
-			if(factory != "createText"){
+			if( (factory != "createText" ) && ( factory != "createPen") ){
 				currentShape.endX = e.pageX - this.offsetLeft;
 				currentShape.endY = e.pageY - this.offsetTop;
 				context.clearRect(0, 0, 500, 500);	
@@ -96,13 +111,28 @@ $(document).ready(function(){
 				//drawing all the shapes
 				Whiteboard.redraw(context);	
 			}	
+			else if( ( factory === "createPen" ) || ( defaultMode ) ){
+				currentShape.endX = e.pageX - this.offsetLeft;
+				currentShape.endY = e.pageY - this.offsetTop;
+				var s = new Point(startX, startY);
+				console.log(s);
+				currentShape.setEndPoint(s);
+				//console.log(arrayOfGrids[1] + arrayOfGrids[4]);
+				
+				context.beginPath();
+				context.moveTo(startX, startY);
+				context.lineTo(currentShape.endX, currentShape.endY);
+				context.stroke();
+				startX = currentShape.endX;
+				startY = currentShape.endY;
+			}
 		}
 	});
 	$("#myCanvas").mouseup(function(e) {
 		isDrawing = false;
 
 
-		if(factory != "createText")
+		if( ( factory != "createText" ) && ( factory != "createPen" ) )
 		{
 			//adding the new shape to the Whiteboard
 			Whiteboard.shape.push(currentShape);

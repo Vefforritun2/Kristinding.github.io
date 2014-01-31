@@ -5,6 +5,7 @@ var Shape = Base.extend({
 		this.color = color;
 	}
 });
+
 //Instance of line
 var Line = Shape.extend({
 	constructor: function(startX, startY, color){
@@ -58,7 +59,19 @@ var Text = Shape.extend({
 
 //instance of pen
 var Pen = Shape.extend({
-	constructor: function(startX, startX, color){
+	constructor: function(startX, startY, color){
 		this.base(startX, startY, color);
+		//var arrayOfGrids = [];
+		this.Point = [];
+	},
+	setEndPoint: function( pt ){
+		this.points.push(pt);
+	},
+	draw: function(context) {
+
+		context.beginPath();
+		context.moveTo(this.startX, this.startY);
+		context.lineTo(this.endX, this.endY);
+		context.stroke();
 	}
-})
+});
