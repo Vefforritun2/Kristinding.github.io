@@ -58,7 +58,8 @@ $(document).ready(function(){
 			Whiteboard.redraw(context);	
 		}
 		var backX = -e.pageX + 170; //útfæra betur
-		var backY = -e.pageY + 7;  //útfæra betur
+		var backY = -e.pageY + 7;  	//útfæra betur
+		console.log(this.offsetLeft);
 		$("#writeText").offset({ top: backY, left:  backX});	
 	});
 
