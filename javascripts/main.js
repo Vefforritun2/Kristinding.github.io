@@ -58,8 +58,7 @@ $(document).ready(function(){
 		context.clearRect(0, 0, 700, 410);
 		Whiteboard.shape.length = 0;
 		Whiteboard.redraw(context);
-		//nextShape = eval("createPen");            -- ath nextShape ætti að vera penni hér
-		factory = "createLine";                     //-- sama hér, á að vera penni
+		factory = "createPen";                    
 		nextShape = eval(factory);
 		Whiteboard.currentColor = "black";
 	});
@@ -134,6 +133,7 @@ $(document).ready(function(){
 		{
 			//adding the new shape to the Whiteboard
 			Whiteboard.shape.push(currentShape);
+			console.log(Whiteboard.shape)
 		}	
 	});
 

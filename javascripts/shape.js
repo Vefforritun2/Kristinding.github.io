@@ -61,16 +61,17 @@ var Text = Shape.extend({
 var Pen = Shape.extend({
 	constructor: function(startX, startY, color){
 		this.base(startX, startY, color);
+		this.point = [];
+		this.arrayOfGrids = [];
 	},
 
 	arrayOfGrids: [],
 
 	setEndPoint: function(point){
-		console.log(point);
 		this.arrayOfGrids.push(point);                         //   ---   eitthvað að klikka
 	},
 	draw: function(context) {
-
+		context.strokeStyle = this.color;
 		for(var i = 0; i < this.arrayOfGrids.length-1; i++) 
 		{
             context.beginPath();
