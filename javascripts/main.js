@@ -3,8 +3,8 @@ function createRect(x,y) {
 	//return new Rect(x,y,...);
 }
 //create new line
-function createLine(startX,startY, endX, endY){
-	return new Line(startX, startY, endX, endY, Whiteboard.currentColor);
+function createLine(startX,startY){
+	return new Line(startX, startY, Whiteboard.currentColor);
 }
 //draw on the board
 var Whiteboard = {
@@ -27,10 +27,9 @@ $(document).ready(function(){
 	var context = canvas.getContext("2d");
 	var startX = 0;
 	var startY = 0;
-	var endX = 0;
-	var endY = 0;
 	var isDrawing = false;
 	var nextShape = "Pen";
+	var currentShape;
 	//Event handler for clicking a shape
 	$(".btnShape").click(function(e){
 		var factory = $(this).attr("data-shape");
@@ -42,26 +41,22 @@ $(document).ready(function(){
 		startX = e.pageX - this.offsetLeft;
 		startY = e.pageY - this.offsetTop;
 		isDrawing = true;
+		currentShape = nextShape(startX, startY);
 	});
 	$("#myCanvas").mousemove(function(e) {
 		if( isDrawing === true ){
-			endX = e.pageX - this.offsetLeft;
-			endY = e.pageY - this.offsetTop;
+			currentShape.endX = e.pageX - this.offsetLeft;
+			currentShape.endY = e.pageY - this.offsetTop;
 			context.clearRect(0, 0, 500, 500);	
-			context.beginPath();
-			context.moveTo(startX, startY);
-			context.lineTo(endX, endY);
-			context.stroke();
-				
-		Whiteboard.redraw(context);						
+			Whiteboard.redraw(context);	
+			currentShape.draw(context);
 		}
 	});
 	$("#myCanvas").mouseup(function(e) {
 		isDrawing = false;
-		//create the next shape
-		var shape = nextShape(startX, startY, endX, endY);
 		//adding the new shape to the Whiteboard
-		Whiteboard.shape.push(shape);
-
+		Whiteboard.shape.push(currentShape);
+		Whiteboard.redraw(context);						
 	});
+
 });
