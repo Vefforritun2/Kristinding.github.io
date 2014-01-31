@@ -52,9 +52,14 @@ $(document).ready(function(){
 		if(textString)
 		{
 			currentShape.text=textString;
+			//adding the new shape to the Whiteboard
 			Whiteboard.shape.push(currentShape);
+			//drawing all the shapes
 			Whiteboard.redraw(context);	
-		}	
+		}
+		var backX = -e.pageX + 170; //útfæra betur
+		var backY = -e.pageY + 7;  //útfæra betur
+		$("#writeText").offset({ top: backY, left:  backX});	
 	});
 
 	//Event handler for clicking a shape
@@ -73,7 +78,7 @@ $(document).ready(function(){
 		if(factory === "createText")
 		{
 			//$("#writeText").offset({ top: 0, left: 0});
-			$("#writeText").css({ top: e.pageX, left: e.pageY});
+			$("#writeText").offset({ top: e.pageY, left: e.pageX});
 			$("#writeText").show();
 		}
 	});
@@ -83,17 +88,20 @@ $(document).ready(function(){
 				currentShape.endX = e.pageX - this.offsetLeft;
 				currentShape.endY = e.pageY - this.offsetTop;
 				context.clearRect(0, 0, 500, 500);	
+				//drawing the current shape
 				currentShape.draw(context);
+				//drawing all the shapes
 				Whiteboard.redraw(context);	
 			}	
 		}
 	});
 	$("#myCanvas").mouseup(function(e) {
 		isDrawing = false;
-		//adding the new shape to the Whiteboard
+
 
 		if(factory != "createText")
 		{
+			//adding the new shape to the Whiteboard
 			Whiteboard.shape.push(currentShape);
 		}	
 	});
