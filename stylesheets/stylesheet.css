@@ -2,11 +2,14 @@ html
 {
   padding-left: 30px;
   background-color: #efefee;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h1
 {
   text-align: center;
+  font-size: 35px;
+  color: #666666;
 }
 
 #myCanvas
@@ -48,5 +51,47 @@ h1
 #writeText
 {
   display: none;
-  position:absolute;
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  border-radius:10px;
+  border-style:solid;
+  border-color:red;
+  background-color: #efefee;
+  padding-top: 10px;
+  padding-left: 50px;
 }
+
+#textSubmit
+{
+  float: center;
+}
+
+#textBox
+{
+  float: center;
+  width: 170px;
+}
+
+#btn1
+{
+  color: #666666;
+}
+#btn2
+{
+  color: #FF6666;
+}
+#btn3
+{
+  color: #00CCFF;
+}
+#btn4
+{
+ color: #039D03;
+}
+#btn5
+{
+  color: #996666;
+}
+
+

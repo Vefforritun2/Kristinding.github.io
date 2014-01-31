@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Teikniborð</title>
+        <title>Drawing application</title>
         <link rel="stylesheet" href="stylesheets/stylesheet.css">
         <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"> -->
         <link rel="author" href="humans.txt">
@@ -15,22 +15,22 @@
         <script src="javascripts/Base.js"></script>
     </head>
     <body>
-      <h1>Teikniborð</h1>
+      <h1>Drawing application</h1>
       
       <div id="buttons">
-        <button class = "btnShape" data-shape = "createRect"> Rectangle </button>
-        <button class = "btnShape" data-shape = "createLine"> Line </button>
-        <button class = "btnShape" data-shape = "createCircle"> Circle </button>
-        <button class = "btnShape" data-shape = "createText"> Text </button>
-        <button class = "btnShape" data-shape = "createPen"> Pen </button>
+        <button id = "btn1" class = "btnShape" data-shape = "createRect"> Rectangle </button>
+        <button id = "btn2" class = "btnShape" data-shape = "createLine"> Line </button>
+        <button id = "btn3" class = "btnShape" data-shape = "createCircle"> Circle </button>
+        <button id = "btn4" class = "btnShape" data-shape = "createText"> Text </button>
+        <button id = "btn5" class = "btnShape" data-shape = "createPen"> Pen </button>
       </div> 
       <div id="canvasDiv"> 
         <canvas id = "myCanvas" height = "500" width = "500">
         </canvas>
       </div>
       <div id="writeText">     
-        <input type="text" id="textBox"/> 
-        <input type="submit" value="Vista texta" id="textSubmit">
+        <input type="text" id="textBox" placeholder="Write here!"/> 
+        <input type="submit" value="Done writing!" id="textSubmit">
       </div>  
     </body>
 </html>
