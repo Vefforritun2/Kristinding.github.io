@@ -38,7 +38,7 @@ var Circle = Shape.extend({
 	draw: function(context) {
 		context.strokeStyle = this.color;
 		context.beginPath( );
-		context.arc( this.startX, this.startY, Math.sqrt( Math.pow(this.endY-this.startY, 2) + Math.pow(this.endX-this.startX, 2) ), 0, 2 * Math.PI, false );
+		context.arc( this.startX, this.startY, Math.sqrt( Math.pow(this.endY-this.startY, 2) + Math.pow(this.endX-this.startX, 2) ), this.startX, this.endX * Math.PI, false );
 		context.stroke( );
 	}
 });
