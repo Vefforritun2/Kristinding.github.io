@@ -98,7 +98,7 @@ $(document).ready(function(){
 			if( ( factory != "createText" ) && ( factory != "createPen" ) ){
 				currentShape.endX = e.pageX - this.offsetLeft;
 				currentShape.endY = e.pageY - this.offsetTop;
-				context.clearRect(0, 0, 500, 500);	
+				context.clearRect(0, 0, 700, 410);	
 				//drawing the current shape
 				currentShape.draw(context);
 				//drawing all the shapes
