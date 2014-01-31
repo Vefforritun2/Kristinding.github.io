@@ -44,13 +44,13 @@ var Whiteboard = {
 $(document).ready(function(){
 	var canvas = document.getElementById("myCanvas");
 	var context = canvas.getContext("2d");
-	var defaultMode = true;
+	//var defaultMode = true;
 	var startX = 0;
 	var startY = 0;
 	var isDrawing = false;
-	var nextShape = "Pen";
+	var nextShape = eval("createPen");
 	var currentShape;
-	var factory;
+	var factory = "createPen";
 	var textString;
 	//var arrayOfGrids;
 	//var i;
@@ -77,7 +77,7 @@ $(document).ready(function(){
 		factory = $(this).attr("data-shape");
 		//we need to change the factory string to function
 		nextShape = eval(factory);
-		defaultMode = false;
+		//defaultMode = false;
 	});
 	$("#myCanvas").mousedown(function(e){
 
@@ -85,24 +85,19 @@ $(document).ready(function(){
 		startX = e.pageX - this.offsetLeft;
 		startY = e.pageY - this.offsetTop;
 		isDrawing = true;
+		currentShape = nextShape(startX, startY);
 
-		if( !defaultMode ){
-			
-			currentShape = nextShape(startX, startY);
-			if(factory === "createText")
-			{
-				//$("#writeText").offset({ top: 0, left: 0});
-				$("#writeText").offset({ top: e.pageY, left: e.pageX});
-				$("#writeText").show();
-			}
-			defaultMode = false;
+		if(factory === "createText")
+		{
+			//$("#writeText").offset({ top: 0, left: 0});
+			$("#writeText").offset({ top: e.pageY, left: e.pageX});
+			$("#writeText").show();
 		}
-
 		
 	});
 	$("#myCanvas").mousemove(function(e) {
 		if( isDrawing === true ){
-			if( (factory != "createText" ) && ( factory != "createPen") ){
+			if( ( factory != "createText" ) && ( factory != "createPen" ) ){
 				currentShape.endX = e.pageX - this.offsetLeft;
 				currentShape.endY = e.pageY - this.offsetTop;
 				context.clearRect(0, 0, 500, 500);	
@@ -111,14 +106,12 @@ $(document).ready(function(){
 				//drawing all the shapes
 				Whiteboard.redraw(context);	
 			}	
-			else if( ( factory === "createPen" ) || ( defaultMode ) ){
+			else if( ( factory === "createPen" ) ){
 				currentShape.endX = e.pageX - this.offsetLeft;
 				currentShape.endY = e.pageY - this.offsetTop;
 				var s = new Point(startX, startY);
-				console.log(s);
-				currentShape.setEndPoint(s);
-				//console.log(arrayOfGrids[1] + arrayOfGrids[4]);
-				
+				currentShape.setEndPoint(s); //eitthvað að klikka
+
 				context.beginPath();
 				context.moveTo(startX, startY);
 				context.lineTo(currentShape.endX, currentShape.endY);
@@ -130,7 +123,6 @@ $(document).ready(function(){
 	});
 	$("#myCanvas").mouseup(function(e) {
 		isDrawing = false;
-
 
 		if( ( factory != "createText" ) && ( factory != "createPen" ) )
 		{
