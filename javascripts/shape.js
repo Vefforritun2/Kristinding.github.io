@@ -45,9 +45,9 @@ var Circle = Shape.extend({
 
 //instance of text
 var Text = Shape.extend({
-constructor: function(startX, startY, color, font){
-	this.base(startX, startY, color)
-	this.font = font;
+	constructor: function(startX, startY, color, font){
+		this.base(startX, startY, color);
+		this.font = font;
 	},
 	draw: function(context) {
 		console.fillStyle= this.color;
@@ -55,3 +55,10 @@ constructor: function(startX, startY, color, font){
 		//context.measureText();
 	}
 });
+
+//instance of pen
+var Pen = Shape.extend({
+	constructor: function(startX, startX, color){
+		this.base(startX, startY, color);
+	}
+})

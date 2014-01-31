@@ -11,12 +11,14 @@ function createRect(startX, startY) {
 function createCircle(startX, startY) {
 	return new Circle(startX, startY, Whiteboard.currentColor);
 }
-
 //create new text
 function createText(startX, startY) {
 	return new Text(startX, startY, Whiteboard.currentColor, Whiteboard.currentFontName); 
 }
-
+//create new Pen
+function createPen(startX, startY) {
+	return new Text(startX, startY, Whiteboard.currentColor)
+}
 
 //draw on the board
 var Whiteboard = {
