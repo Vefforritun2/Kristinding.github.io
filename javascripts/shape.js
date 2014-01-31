@@ -75,4 +75,8 @@ var Pen = Shape.extend({
 		context.lineTo(this.endX, this.endY);
 		context.stroke();
 	}
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 8b5ca4fcbb818cc9026f12d2d9d432efec2d39f8
