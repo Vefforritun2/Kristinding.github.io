@@ -60,7 +60,13 @@ $(document).ready(function(){
 		//nextShape = eval("createPen");            -- ath nextShape ætti að vera penni hér
 		factory = "createLine";                     //-- sama hér, á að vera penni
 		nextShape = eval(factory);
+		Whiteboard.currentColor = "black";
 	});
+
+	$("#colour").click(function(e){
+		Whiteboard.currentColor = $("#colour :selected").val();
+		console.log(Whiteboard.currentColor);
+	})
 
 	//submits text
 	$("#textSubmit").click(function(e){
@@ -87,7 +93,6 @@ $(document).ready(function(){
 		nextShape = eval(factory);
 	});
 	$("#myCanvas").mousedown(function(e){
-
 		//gives us the x and y coordinate where the mouse is pressed down
 		startX = e.pageX - this.offsetLeft;
 		startY = e.pageY - this.offsetTop;

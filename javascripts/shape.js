@@ -51,7 +51,7 @@ var Text = Shape.extend({
 		this.font = font;
 	},
 	draw: function(context) {
-		console.fillStyle= this.color;
+		context.fillStyle = this.color;
 		context.fillText(this.text, this.startX, this.startY);
 		//context.measureText();
 	}
@@ -75,8 +75,5 @@ var Pen = Shape.extend({
 		context.lineTo(this.endX, this.endY);
 		context.stroke();
 	}
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> 8b5ca4fcbb818cc9026f12d2d9d432efec2d39f8
+
