@@ -17,7 +17,7 @@
     <body>
       <h1>Drawing application</h1>
       
-      <div id="buttons">
+      <div id="shapeButtons">
         <button id = "btn1" class = "btnShape" data-shape = "createRect"> Rectangle </button>
         <button id = "btn2" class = "btnShape" data-shape = "createLine"> Line </button>
         <button id = "btn3" class = "btnShape" data-shape = "createCircle"> Circle </button>
@@ -25,8 +25,14 @@
         <button id = "btn5" class = "btnShape" data-shape = "createPen"> Pen </button>
       </div> 
       <div id="canvasDiv"> 
-        <canvas id = "myCanvas" height = "500" width = "500">
+        <canvas id = "myCanvas" height = "410" width = "700">
         </canvas>
+      </div>
+      
+      <div id="fixButtons">
+          <button id = "btn6" class = "btnShape" data-shape = "createRect"> Undo </button>
+          <button id = "btn7" class = "btnShape" data-shape = "createRect"> Redo </button>
+          <button id = "btn8" class = "btnShape" data-shape = "createRect"> Clean </button>
       </div>
       <div id="writeText">     
         <input type="text" id="textBox" placeholder="Write here!"/> 
