@@ -51,8 +51,6 @@ $(document).ready(function(){
 	var currentShape;
 	var factory = "createPen";
 	var textString;
-	//var arrayOfGrids;
-	//var i;
 
 	$("#textSubmit").click(function(e){
 		textString = $("#textBox").val();
