@@ -66,7 +66,7 @@ var Pen = Shape.extend({
 	},
 	setEndPoint: function( pt ){
 		console.log("push");
-		this.points.push(pt); //eitthvað að klikka
+		this.points.push(pt);                         //   ---   eitthvað að klikka
 	},
 	draw: function(context) {
 

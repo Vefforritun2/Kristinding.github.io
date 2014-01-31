@@ -52,9 +52,19 @@ $(document).ready(function(){
 	var factory = "createPen";
 	var textString;
 
+	//Clear the board
+	$("#btn8").click(function(e){
+		context.clearRect(0, 0, 700, 410);
+		Whiteboard.shape.length = 0;
+		Whiteboard.redraw(context);
+		//nextShape = eval("createPen");            -- ath nextShape ætti að vera penni hér
+		nextShape = eval("createLine");
+	});
+
+	//submits text
 	$("#textSubmit").click(function(e){
 		textString = $("#textBox").val();
-		//$("#textBox").val('');
+		$("#textBox").val('');
 		$("#writeText").hide();
 		if(textString)
 		{
@@ -64,8 +74,8 @@ $(document).ready(function(){
 			//drawing all the shapes
 			Whiteboard.redraw(context);	
 		}
-		var backX = -e.pageX + 170; //útfæra betur
-		var backY = -e.pageY + 7;  	//útfæra betur
+		var backX = -e.pageX + 170;                                 //     -- útfæra betur
+		var backY = -e.pageY + 7;  	                                //     -- útfæra betur
 		$("#writeText").offset({ top: backY, left:  backX});	
 	});
 
@@ -106,7 +116,7 @@ $(document).ready(function(){
 				currentShape.endX = e.pageX - this.offsetLeft;
 				currentShape.endY = e.pageY - this.offsetTop;
 				var s = new Point(startX, startY);
-				currentShape.setEndPoint(s); //eitthvað að klikka
+				currentShape.setEndPoint(s);                          //  ----  eitthvað að klikka
 
 				context.beginPath();
 				context.moveTo(startX, startY);
