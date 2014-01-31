@@ -58,7 +58,8 @@ $(document).ready(function(){
 		Whiteboard.shape.length = 0;
 		Whiteboard.redraw(context);
 		//nextShape = eval("createPen");            -- ath nextShape ætti að vera penni hér
-		nextShape = eval("createLine");
+		factory = "createLine";                     //-- sama hér, á að vera penni
+		nextShape = eval(factory);
 	});
 
 	//submits text
@@ -82,8 +83,9 @@ $(document).ready(function(){
 	//Event handler for clicking a shape
 	$(".btnShape").click(function(e){
 		factory = $(this).attr("data-shape");
-		//we need to change the factory string to function
+		//we need to change/evaluate the factory string to function
 		nextShape = eval(factory);
+		console.log("change shape");
 	});
 	$("#myCanvas").mousedown(function(e){
 
@@ -92,6 +94,7 @@ $(document).ready(function(){
 		startY = e.pageY - this.offsetTop;
 		isDrawing = true;
 		currentShape = nextShape(startX, startY);
+		console.log(currentShape);
 
 		if(factory === "createText")
 		{
