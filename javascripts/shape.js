@@ -12,6 +12,7 @@ var Line = Shape.extend({
 		this.base(startX, startY, color);
 	},
 	draw: function(context) {
+		context.strokeStyle = this.color;
 		context.beginPath();
 		context.moveTo(this.startX, this.startY);
 		context.lineTo(this.endX, this.endY);
