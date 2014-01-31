@@ -47,9 +47,9 @@ $(document).ready(function(){
 
 	$("#textSubmit").click(function(e){
 		textString = $("#textBox").val();
-		$("#textBox").val('');
+		//$("#textBox").val('');
 		$("#writeText").hide();
-		if(textString != "undefined")
+		if(textString)
 		{
 			currentShape.text=textString;
 			Whiteboard.shape.push(currentShape);
@@ -68,24 +68,21 @@ $(document).ready(function(){
 		//gives us the x and y coordinate where the mouse is pressed down
 		var startX = e.pageX - this.offsetLeft;
 		var startY = e.pageY - this.offsetTop;
-
-		if(factory === "createText")
-		{
-			$("#writeText").offset({ top: 0, left: 0});
-			$("#writeText").offset({ top: e.pageY, left: e.pageX});
-			$("#writeText").show();
-		}
-
 		isDrawing = true;
 		currentShape = nextShape(startX, startY);
+		if(factory === "createText")
+		{
+			//$("#writeText").offset({ top: 0, left: 0});
+			$("#writeText").css({ top: e.pageX, left: e.pageY});
+			$("#writeText").show();
+		}
 	});
 	$("#myCanvas").mousemove(function(e) {
 		if( isDrawing === true ){
-			currentShape.endX = e.pageX - this.offsetLeft;
-			currentShape.endY = e.pageY - this.offsetTop;
-			context.clearRect(0, 0, 500, 500);	
-			if(factory != createText)
-			{
+			if(factory != "createText"){
+				currentShape.endX = e.pageX - this.offsetLeft;
+				currentShape.endY = e.pageY - this.offsetTop;
+				context.clearRect(0, 0, 500, 500);	
 				currentShape.draw(context);
 				Whiteboard.redraw(context);	
 			}	
@@ -95,7 +92,7 @@ $(document).ready(function(){
 		isDrawing = false;
 		//adding the new shape to the Whiteboard
 
-		if(factory != createText)
+		if(factory != "createText")
 		{
 			Whiteboard.shape.push(currentShape);
 		}	
