@@ -44,7 +44,6 @@ var Whiteboard = {
 $(document).ready(function(){
 	var canvas = document.getElementById("myCanvas");
 	var context = canvas.getContext("2d");
-	//var defaultMode = true;
 	var startX = 0;
 	var startY = 0;
 	var isDrawing = false;
@@ -77,7 +76,6 @@ $(document).ready(function(){
 		factory = $(this).attr("data-shape");
 		//we need to change the factory string to function
 		nextShape = eval(factory);
-		//defaultMode = false;
 	});
 	$("#myCanvas").mousedown(function(e){
 
