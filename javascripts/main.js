@@ -1,3 +1,4 @@
+
 //create new line
 function createLine(startX,startY){
 	return new Line(startX, startY, Whiteboard.currentColor);
@@ -10,10 +11,13 @@ function createRect(startX, startY) {
 function createCircle(startX, startY) {
 	return new Circle(startX, startY, Whiteboard.currentColor);
 }
+
 //create new text
 function createText(startX, startY) {
 	return new Text(startX, startY, Whiteboard.currentColor, Whiteboard.currentFontName); 
 }
+
+
 //draw on the board
 var Whiteboard = {
 	currentColor: "Black",  
@@ -65,4 +69,5 @@ $(document).ready(function(){
 		//adding the new shape to the Whiteboard
 		Whiteboard.shape.push(currentShape);
 	});
+
 });

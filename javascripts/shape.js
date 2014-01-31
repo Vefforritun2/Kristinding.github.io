@@ -17,6 +17,7 @@ var Line = Shape.extend({
 		context.stroke();
 	}
 });
+
 //Instance of rectangle
 var Rect = Shape.extend({
 	constructor: function(startX, startY, color){
@@ -28,6 +29,7 @@ var Rect = Shape.extend({
 		context.strokeRect(this.startX, this.startY, this.endX - this.startX, this.endY - this.startY);
 	}
 });
+
 //instance of circle
 var Circle = Shape.extend({
 	constructor: function(startX, startY, color){
@@ -40,6 +42,7 @@ var Circle = Shape.extend({
 		context.stroke( );
 	}
 });
+
 //instance of text
 var Text = Shape.extend({
 constructor: function(startX, startY, color, font){
@@ -47,7 +50,9 @@ constructor: function(startX, startY, color, font){
 	this.font = font;
 	},
 	draw: function(context) {
+		console.fillStyle= this.color;
 		context.fillText("sample string", this.startX, this.startY);
+		
 		//context.measureText();
 	}
 });
