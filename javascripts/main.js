@@ -9,8 +9,15 @@ function createRect(startX, startY) {
 }
 //ceate new Circle
 function createCircle(startX, startY) {
-	return new Circle(startX, startY, Whiteboard.currentColor)
+	return new Circle(startX, startY, Whiteboard.currentColor);
 }
+
+//create new text
+function createText(startX, startY) {
+	return new Text(startX, startY, Whiteboard.currentColor, Whiteboard.currentFontName); 
+}
+
+
 //draw on the board
 var Whiteboard = {
 	currentColor: "Black",  
@@ -30,8 +37,8 @@ var Whiteboard = {
 $(document).ready(function(){
 	var canvas = document.getElementById("myCanvas");
 	var context = canvas.getContext("2d");
-	var startX = 0;
-	var startY = 0;
+	//var startX = 0;
+	//var startY = 0;
 	var isDrawing = false;
 	var nextShape = "Pen";
 	var currentShape;
@@ -43,8 +50,8 @@ $(document).ready(function(){
 	});
 	$("#myCanvas").mousedown(function(e){
 		//gives us the x and y coordinate where the mouse is pressed down
-		startX = e.pageX - this.offsetLeft;
-		startY = e.pageY - this.offsetTop;
+		var startX = e.pageX - this.offsetLeft;
+		var startY = e.pageY - this.offsetTop;
 		isDrawing = true;
 		currentShape = nextShape(startX, startY);
 	});
@@ -55,14 +62,12 @@ $(document).ready(function(){
 			context.clearRect(0, 0, 500, 500);	
 			currentShape.draw(context);
 			Whiteboard.redraw(context);	
-
 		}
 	});
 	$("#myCanvas").mouseup(function(e) {
 		isDrawing = false;
 		//adding the new shape to the Whiteboard
 		Whiteboard.shape.push(currentShape);
-		//Whiteboard.redraw(context);						
 	});
 
 });

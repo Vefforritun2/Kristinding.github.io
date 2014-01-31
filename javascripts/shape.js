@@ -42,3 +42,16 @@ var Circle = Shape.extend({
 		context.stroke( );
 	}
 });
+
+//instance of text
+var Text = Shape.extend({
+constructor: function(startX, startY, color, font){
+	this.base(startX, startY, color)
+	this.font = font;
+	},
+	draw: function(context) {
+		context.fillText("sample string", this.startX, this.startY);
+
+		//context.measureText();
+	}
+});
