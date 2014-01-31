@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> 8a34d520955b332499fd4e77c5af66d83780d63f
 //create new line
 function createLine(startX,startY){
 	return new Line(startX, startY, Whiteboard.currentColor);
@@ -14,19 +11,13 @@ function createRect(startX, startY) {
 function createCircle(startX, startY) {
 	return new Circle(startX, startY, Whiteboard.currentColor);
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 8a34d520955b332499fd4e77c5af66d83780d63f
 //create new text
 function createText(startX, startY) {
 	return new Text(startX, startY, Whiteboard.currentColor, Whiteboard.currentFontName); 
 }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 8a34d520955b332499fd4e77c5af66d83780d63f
 //draw on the board
 var Whiteboard = {
 	currentColor: "Black",  
@@ -78,4 +69,5 @@ $(document).ready(function(){
 		//adding the new shape to the Whiteboard
 		Whiteboard.shape.push(currentShape);
 	});
+
 });
