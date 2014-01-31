@@ -85,7 +85,6 @@ $(document).ready(function(){
 		factory = $(this).attr("data-shape");
 		//we need to change/evaluate the factory string to function
 		nextShape = eval(factory);
-		console.log("change shape");
 	});
 	$("#myCanvas").mousedown(function(e){
 
@@ -94,7 +93,6 @@ $(document).ready(function(){
 		startY = e.pageY - this.offsetTop;
 		isDrawing = true;
 		currentShape = nextShape(startX, startY);
-		console.log(currentShape);
 
 		if(factory === "createText")
 		{
