@@ -25,3 +25,8 @@ h1
   float: right;
   padding-right: 100px;
 }
+
+#writeText
+{
+  display: none;
+}

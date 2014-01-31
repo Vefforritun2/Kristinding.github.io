@@ -51,8 +51,7 @@ constructor: function(startX, startY, color, font){
 	},
 	draw: function(context) {
 		console.fillStyle= this.color;
-		context.fillText("sample string", this.startX, this.startY);
-		
+		context.fillText(this.text, this.startX, this.startY);
 		//context.measureText();
 	}
 });

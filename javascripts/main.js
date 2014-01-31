@@ -42,14 +42,30 @@ $(document).ready(function(){
 	var isDrawing = false;
 	var nextShape = "Pen";
 	var currentShape;
+	var factory;
+	var textString;
+
+	$("#textSubmit").click(function(e){
+		textString = $("#textBox").val();
+		$("#writeText").hide();
+		currentShape.text=textString;
+		Whiteboard.shape.push(currentShape);
+		Whiteboard.redraw(context);	
+	});
+
 	//Event handler for clicking a shape
 	$(".btnShape").click(function(e){
-		var factory = $(this).attr("data-shape");
+		factory = $(this).attr("data-shape");
 		//we need to change the factory string to function
 		nextShape = eval(factory);
+
 	});
 	$("#myCanvas").mousedown(function(e){
 		//gives us the x and y coordinate where the mouse is pressed down
+		if(factory === "createText")
+		{
+			$("#writeText").show();
+		}
 		var startX = e.pageX - this.offsetLeft;
 		var startY = e.pageY - this.offsetTop;
 		isDrawing = true;
