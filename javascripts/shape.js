@@ -61,19 +61,23 @@ var Text = Shape.extend({
 var Pen = Shape.extend({
 	constructor: function(startX, startY, color){
 		this.base(startX, startY, color);
-		//var arrayOfGrids = [];
-		this.Point = [];
 	},
-	setEndPoint: function( pt ){
-		console.log("push");
-		this.points.push(pt);                         //   ---   eitthvað að klikka
+
+	arrayOfGrids: [],
+
+	setEndPoint: function(point){
+		console.log(point);
+		this.arrayOfGrids.push(point);                         //   ---   eitthvað að klikka
 	},
 	draw: function(context) {
 
-		context.beginPath();
-		context.moveTo(this.startX, this.startY);
-		context.lineTo(this.endX, this.endY);
-		context.stroke();
+		for(var i = 0; i < this.arrayOfGrids.length-1; i++) 
+		{
+            context.beginPath();
+            context.moveTo(this.arrayOfGrids[i].startX, this.arrayOfGrids[i].startY);	
+			context.lineTo(this.arrayOfGrids[i+1].startX, this.arrayOfGrids[i+1].startY);
+			context.stroke();
+        }
 	}
 });
 

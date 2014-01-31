@@ -52,6 +52,7 @@ $(document).ready(function(){
 	var factory = "createPen";
 	var textString;
 
+
 	//Clear the board
 	$("#btn8").click(function(e){
 		context.clearRect(0, 0, 700, 410);
@@ -105,38 +106,31 @@ $(document).ready(function(){
 			$("#writeText").offset({ top: e.pageY, left: e.pageX});
 			$("#writeText").show();
 		}
-		
 	});
 	$("#myCanvas").mousemove(function(e) {
 		if( isDrawing === true ){
-			if( ( factory != "createText" ) && ( factory != "createPen" ) ){
 				currentShape.endX = e.pageX - this.offsetLeft;
 				currentShape.endY = e.pageY - this.offsetTop;
+			if( ( factory != "createText" ) && ( factory != "createPen" ) ){
 				context.clearRect(0, 0, 700, 410);	
 				//drawing the current shape
 				currentShape.draw(context);
 				//drawing all the shapes
 				Whiteboard.redraw(context);	
 			}	
-			else if( ( factory === "createPen" ) ){
-				currentShape.endX = e.pageX - this.offsetLeft;
-				currentShape.endY = e.pageY - this.offsetTop;
-				var s = new Point(startX, startY);
+			else if( ( factory === "createPen" ) )
+			{
+				var s = new Point(currentShape.endX, currentShape.endY);
 				currentShape.setEndPoint(s);                          //  ----  eitthvað að klikka
-
-				context.beginPath();
-				context.moveTo(startX, startY);
-				context.lineTo(currentShape.endX, currentShape.endY);
-				context.stroke();
-				startX = currentShape.endX;
-				startY = currentShape.endY;
+				currentShape.draw(context);
+				Whiteboard.redraw(context);	
 			}
 		}
 	});
 	$("#myCanvas").mouseup(function(e) {
 		isDrawing = false;
 
-		if( ( factory != "createText" ) && ( factory != "createPen" ) )
+		if( ( factory != "createText" ))
 		{
 			//adding the new shape to the Whiteboard
 			Whiteboard.shape.push(currentShape);
