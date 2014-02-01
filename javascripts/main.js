@@ -1,4 +1,3 @@
-
 //create new line
 function createLine(startX,startY){
 	return new Line(startX, startY, Whiteboard.currentColor, Whiteboard.currentLineSize);
@@ -24,7 +23,6 @@ function Point(startX, startY){
 	this.startX = startX;
 	this.startY = startY;
 }
-
 //draw on the board 
 var Whiteboard = {
 	currentColor: "Black",  
@@ -51,8 +49,6 @@ $(document).ready(function(){
 	var currentShape;
 	var factory = "createPen";
 	var textString;
-
-
 	//Clear the board
 	$("#btn8").click(function(e){
 		context.clearRect(0, 0, 700, 410);
@@ -62,27 +58,22 @@ $(document).ready(function(){
 		nextShape = eval(factory);
 		Whiteboard.currentColor = "black";
 	});
-
 	//change color
 	$("#colour").click(function(e){
 		Whiteboard.currentColor = $("#colour :selected").val();
 	})
-
 	//change font size
 	$("#fontSize").click(function(e) {
 		Whiteboard.currentFontSize = $("#fontSize :selected").val();
 	});
-
 	//change font name
 	$("#font").click(function(e){
 		Whiteboard.currentFontName = $("#font :selected").val();
 	});
-
 	//change line size
 	$("#lineSize").click(function(e){
 		Whiteboard.currentLineSize = $("#lineSize :selected").val();
 	});
-
 	//submits text
 	$("#textSubmit").click(function(e){
 		textString = $("#textBox").val();
@@ -100,7 +91,6 @@ $(document).ready(function(){
 		var backY = -e.pageY + 7;  	                                //     -- útfæra betur
 		$("#writeText").offset({ top: backY, left:  backX});	
 	});
-
 	//Event handler for clicking a shape
 	$(".btnShape").click(function(e){
 		factory = $(this).attr("data-shape");
@@ -113,7 +103,6 @@ $(document).ready(function(){
 		startY = e.pageY - this.offsetTop;
 		isDrawing = true;
 		currentShape = nextShape(startX, startY);
-
 		if(factory === "createText")
 		{
 			//$("#writeText").offset({ top: 0, left: 0});
@@ -143,12 +132,10 @@ $(document).ready(function(){
 	});
 	$("#myCanvas").mouseup(function(e) {
 		isDrawing = false;
-
 		if( ( factory != "createText" ))
 		{
 			//adding the new shape to the Whiteboard
 			Whiteboard.shape.push(currentShape);
 		}	
 	});
-
 });

@@ -156,3 +156,47 @@ select {
 }
 
 
+#btn1:hover
+{
+  background: #666666;
+  color: white;
+}
+
+#btn2:hover
+{
+  background: #FF6666;
+  color: white;
+}
+
+#btn3:hover
+{
+  background: #00CCFF;
+  color: white;
+}
+
+#btn4:hover 
+{
+  background: #039D03;
+  color: white;
+}
+
+#btn5:hover 
+{
+  background: #996666;
+  color: white;
+}
+
+#btn5:active 
+{
+  background: #996666;
+  color: white;
+}
+
+#btn5:active
+{
+    background: #996666;
+    color: white;
+}
+
+
+
