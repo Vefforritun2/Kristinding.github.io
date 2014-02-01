@@ -116,17 +116,17 @@ $(document).ready(function(){
 				currentShape.endY = e.pageY - this.offsetTop;
 			if( ( factory != "createText" ) && ( factory != "createPen" ) ){
 				context.clearRect(0, 0, 700, 410);	
-				//drawing the current shape
-				currentShape.draw(context);
 				//drawing all the shapes
 				Whiteboard.redraw(context);	
+				//drawing the current shape
+				currentShape.draw(context);
 			}	
 			else if( ( factory === "createPen" ) )
 			{
 				var s = new Point(currentShape.endX, currentShape.endY);
 				currentShape.setEndPoint(s);                          
-				currentShape.draw(context);
 				Whiteboard.redraw(context);	
+				currentShape.draw(context);
 			}
 		}
 	});
