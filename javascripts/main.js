@@ -40,7 +40,6 @@ var Whiteboard = {
 		for (var i = 0 ; i < this.shape.length ; i++ )
 		{
 			this.shape[i].draw(context);
-			console.log("draw");
 		}
 	}
 };
