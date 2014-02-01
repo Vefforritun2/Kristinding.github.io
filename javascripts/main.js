@@ -116,7 +116,7 @@ $(document).ready(function(){
 	{
 		var newUploadedImage = createImage(context);
 		newUploadedImage.draw(context);
-		Whiteboard.shapes.push(newUploadedImage);  
+		Whiteboard.shape.push(newUploadedImage);  
 	});
 
 	//change color
