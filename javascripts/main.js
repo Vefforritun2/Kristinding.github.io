@@ -29,7 +29,7 @@ function Point(startX, startY){
 var Whiteboard = {
 	currentColor: "Black",  
 	currentFontName: "Courier New",
-	currentLineSize: 3,
+	currentLineSize: 4,
 	currentFontSize: "12",
 	//array of all the shapes
 	shape: [], 
