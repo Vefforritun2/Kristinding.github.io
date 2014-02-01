@@ -93,32 +93,12 @@ $(document).ready(function(){
 	  
 	});
 	//upload drawing
-	//Heimild http://jsfiddle.net/influenztial/qy7h5/
-	/*var imageLoader = document.getElementById('imageLoader');
-    imageLoader.addEventListener('change', handleImage, false);
-	function handleImage(e)
-	{
-	    var reader = new FileReader();
-	    reader.onload = function(event)
-	    {
-	        var img = new Image();
-	        img.onload = function()
-	        {   
-	        	myCanvas.width = img.width;
-            	myCanvas.height = img.height;
-            	context.drawImage(img,0,0);
-	        }
-	        img.src = event.target.result;
-	    }
-	    reader.readAsDataURL(e.target.files[0]);     
-	}*/
 	$("#imageLoader").on('change', function(e)
 	{
 		var newUploadedImage = createImage(context);
 		newUploadedImage.draw(context);
 		Whiteboard.shape.push(newUploadedImage);  
 	});
-
 	//change color
 	$("#colour").click(function(e){
 		Whiteboard.currentColor = $("#colour :selected").val();
