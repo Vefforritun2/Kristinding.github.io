@@ -19,6 +19,9 @@ var Line = Shape.extend({
 		context.moveTo(this.startX, this.startY);
 		context.lineTo(this.endX, this.endY);
 		context.stroke();
+	},
+	contains: function (pt){
+
 	}
 });
 
@@ -96,6 +99,14 @@ var Pen = Shape.extend({
 			//context.stroke();
 
         }
+	},
+	contains: function (pt){
+		for( var i = 0 ; i < this.arrayOfGrids.length-1 ; i++ )
+		{
+			if( this.arrayOfGrids === pt){
+				return true;
+			}
+		}
 	}
 });
 

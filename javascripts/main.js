@@ -148,6 +148,7 @@ $(document).ready(function(){
 		//we need to change/evaluate the factory string to function
 		nextShape = eval(factory);
 	});
+	//drawing shape
 	$("#myCanvas").mousedown(function(e){
 		//gives us the x and y coordinate where the mouse is pressed down
 		startX = e.pageX - this.offsetLeft;
@@ -188,5 +189,12 @@ $(document).ready(function(){
 			//adding the new shape to the Whiteboard
 			Whiteboard.shape.push(currentShape);
 		}	
+	});
+	//moving shape
+	$("#btn9").mousedown(function(e){
+		
+		if ( Shape.contains ){
+
+		}
 	});
 });
