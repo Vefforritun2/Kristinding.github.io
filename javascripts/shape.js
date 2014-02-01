@@ -64,7 +64,7 @@ var Pen = Shape.extend({
 	constructor: function(startX, startY, color){
 		this.base(startX, startY, color);
 		this.point = [];
-		this.arrayOfGrids = [];
+		this.arrayOfGrids = []; 
 	},
 
 	arrayOfGrids: [],
