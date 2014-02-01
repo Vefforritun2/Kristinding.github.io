@@ -66,7 +66,7 @@ $(document).ready(function(){
 	});
 	//undo
 	$("#btn6").click(function(e){
-		if( Whiteboard.shape.length != 0 )
+		if( Whiteboard.shape.length !== 0 )
 		{
 			context.clearRect(0, 0, 700, 410);
 			Whiteboard.redo.push(Whiteboard.shape[Whiteboard.shape.length - 1]);
@@ -76,7 +76,7 @@ $(document).ready(function(){
 	});
 	//redo
 	$("#btn7").click(function(e){
-		if( Whiteboard.redo.length != 0 )
+		if( Whiteboard.redo.length !== 0 )
 		{
 			Whiteboard.shape.push(Whiteboard.redo[Whiteboard.redo.length - 1]);
 			Whiteboard.redo.pop(Whiteboard.redo[Whiteboard.redo.length - 1]);
@@ -176,7 +176,7 @@ $(document).ready(function(){
 		if( isDrawing === true ){
 				currentShape.endX = e.pageX - this.offsetLeft;
 				currentShape.endY = e.pageY - this.offsetTop;
-			if( ( factory != "createText" ) && ( factory != "createPen" ) ){
+			if( ( factory !== "createText" ) && ( factory !== "createPen" ) ){
 				context.clearRect(0, 0, 700, 410);	
 				//drawing all the shapes
 				Whiteboard.redraw(context);	
@@ -194,7 +194,7 @@ $(document).ready(function(){
 	});
 	$("#myCanvas").mouseup(function(e) {
 		isDrawing = false;
-		if( ( factory != "createText" ))
+		if( ( factory !== "createText" ))
 		{
 			//adding the new shape to the Whiteboard
 			Whiteboard.shape.push(currentShape);

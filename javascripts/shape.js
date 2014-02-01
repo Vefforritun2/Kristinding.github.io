@@ -116,13 +116,14 @@ var uplodedImage = Shape.extend({
 	constructor: function(context){
 		img = new Image();
         url = window.URL || window.webkitURL;
-        f = document.getElementById("imageLoader").files[0];
+        cf = document.getElementById("imageLoader").files[0];
+        //console.log(document.getElementById("imageLoader"));
     	src = url.createObjectURL(f);
     	img.src = src;
 
     	img.onload = function() {
-        context.drawImage(img, 0, 0);
-        url.revokeObjectURL(src);
+        	context.drawImage(img, 0, 0);
+        	url.revokeObjectURL(src);
     	}
     },
 	draw: function(context){
