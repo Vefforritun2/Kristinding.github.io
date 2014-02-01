@@ -110,3 +110,23 @@ var Pen = Shape.extend({
 	}
 });
 
+//Upload photo 
+//Reference: http://jsfiddle.net/fWLJ9/
+var uplodedImage = Shape.extend({
+	constructor: function(context){
+		var img = new Image();
+        var url = window.URL || window.webkitURL,
+    	var src = url.createObjectURL(f);
+    	img.src = src;
+
+    	img.onload = function() {
+        context.drawImage(img, 0, 0);
+        url.revokeObjectURL(src);
+    },
+
+	draw: function(context){
+		context.drawImage(img, 0, 0);
+        url.revokeObjectURL(src);
+	}
+});
+
