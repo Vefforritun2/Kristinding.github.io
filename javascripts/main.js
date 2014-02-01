@@ -55,6 +55,7 @@ $(document).ready(function(){
 	$("#btn8").click(function(e){
 		context.clearRect(0, 0, 700, 410);
 		Whiteboard.shape.length = 0;
+		Whiteboard.redo.length = 0;
 		Whiteboard.redraw(context);
 		factory = "createPen";                    
 		nextShape = eval(factory);
@@ -62,12 +63,22 @@ $(document).ready(function(){
 	});
 	//undo
 	$("#btn6").click(function(e){
-		context.clearRect(0, 0, 700, 410);
-		Whiteboard.redo.push(Whiteboard.shape[Whiteboard.shape.length - 1]);
-		console.log(Whiteboard.shape[Whiteboard.shape.length - 1]);
-		Whiteboard.shape.pop(Whiteboard.shape[Whiteboard.shape.length - 1]);
-		console.log(Whiteboard.shape[Whiteboard.shape.length - 1]);
-		Whiteboard.redraw(context);
+		if( Whiteboard.shape.length != 0 )
+		{
+			context.clearRect(0, 0, 700, 410);
+			Whiteboard.redo.push(Whiteboard.shape[Whiteboard.shape.length - 1]);
+			Whiteboard.shape.pop(Whiteboard.shape[Whiteboard.shape.length - 1]);
+			Whiteboard.redraw(context);
+		}	
+	});
+	//redo
+	$("#btn7").click(function(e){
+		if( Whiteboard.redo.length != 0 )
+		{
+			Whiteboard.shape.push(Whiteboard.redo[Whiteboard.redo.length - 1]);
+			Whiteboard.redo.pop(Whiteboard.redo[Whiteboard.redo.length - 1]);
+			Whiteboard.redraw(context);
+		}
 	});
 	//change color
 	$("#colour").click(function(e){
