@@ -25,7 +25,7 @@ function Point(startX, startY){
 	this.startY = startY;
 }
 
-//draw on the board
+//draw on the board 
 var Whiteboard = {
 	currentColor: "Black",  
 	currentFontName: "Courier New",
