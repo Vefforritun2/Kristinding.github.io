@@ -8,11 +8,13 @@ var Shape = Base.extend({
 
 //Instance of line
 var Line = Shape.extend({
-	constructor: function(startX, startY, color){
+	constructor: function(startX, startY, color, lineSize){
 		this.base(startX, startY, color);
+		this.lineSize = lineSize;
 	},
 	draw: function(context) {
 		context.strokeStyle = this.color;
+		context.lineWidth = this.lineSize;
 		context.beginPath();
 		context.moveTo(this.startX, this.startY);
 		context.lineTo(this.endX, this.endY);
@@ -22,23 +24,27 @@ var Line = Shape.extend({
 
 //Instance of rectangle
 var Rect = Shape.extend({
-	constructor: function(startX, startY, color){
+	constructor: function(startX, startY, color, lineSize){
 		this.base(startX, startY, color);
+		this.lineSize = lineSize;
 		
 	},
 	draw: function(context) {
 		context.strokeStyle = this.color;
+		context.lineWidth = this.lineSize;
 		context.strokeRect(this.startX, this.startY, this.endX - this.startX, this.endY - this.startY);
 	}
 });
 
 //instance of circle
 var Circle = Shape.extend({
-	constructor: function(startX, startY, color){
+	constructor: function(startX, startY, color, lineSize){
 		this.base(startX, startY, color)
+		this.lineSize = lineSize;
 	},
 	draw: function(context) {
 		context.strokeStyle = this.color;
+		context.lineWidth = this.lineSize;
 		context.beginPath( );
 		context.arc( this.startX, this.startY, Math.sqrt( Math.pow(this.endY-this.startY, 2) + Math.pow(this.endX-this.startX, 2) ), this.startX, this.endX * Math.PI, false );
 		context.stroke( );
@@ -61,8 +67,9 @@ var Text = Shape.extend({
 
 //instance of pen
 var Pen = Shape.extend({
-	constructor: function(startX, startY, color){
+	constructor: function(startX, startY, color, lineSize){
 		this.base(startX, startY, color);
+		this.lineSize = lineSize;
 		this.point = [];
 		this.arrayOfGrids = []; 
 	},
@@ -74,6 +81,7 @@ var Pen = Shape.extend({
 	},
 	draw: function(context) {
 		context.strokeStyle = this.color;
+		context.lineWidth = this.lineSize;
 		for(var i = 0; i < this.arrayOfGrids.length-1; i++) 
 		{
             context.beginPath();

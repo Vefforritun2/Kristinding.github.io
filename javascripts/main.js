@@ -1,15 +1,15 @@
 
 //create new line
 function createLine(startX,startY){
-	return new Line(startX, startY, Whiteboard.currentColor);
+	return new Line(startX, startY, Whiteboard.currentColor, Whiteboard.currentLineSize);
 }
 //create new Rectangle
 function createRect(startX, startY) {
-	return new Rect(startX, startY, Whiteboard.currentColor);
+	return new Rect(startX, startY, Whiteboard.currentColor, Whiteboard.currentLineSize);
 }
 //ceate new Circle
 function createCircle(startX, startY) {
-	return new Circle(startX, startY, Whiteboard.currentColor);
+	return new Circle(startX, startY, Whiteboard.currentColor, Whiteboard.currentLineSize);
 }
 //create new text
 function createText(startX, startY) {
@@ -17,7 +17,7 @@ function createText(startX, startY) {
 }
 //create new Pen
 function createPen(startX, startY) {
-	return new Pen(startX, startY, Whiteboard.currentColor);
+	return new Pen(startX, startY, Whiteboard.currentColor, Whiteboard.currentLineSize);
 }
 //create point
 function Point(startX, startY){
@@ -29,7 +29,7 @@ function Point(startX, startY){
 var Whiteboard = {
 	currentColor: "Black",  
 	currentFontName: "Courier New",
-	//context.lineWidth = 5;  þetta er línustærð, bæta þessu við ef tími gefst
+	currentLineSize: 3,
 	currentFontSize: "12",
 	//array of all the shapes
 	shape: [], 
@@ -76,6 +76,11 @@ $(document).ready(function(){
 	//change font name
 	$("#font").click(function(e){
 		Whiteboard.currentFontName = $("#font :selected").val();
+	});
+
+	//change line size
+	$("#lineSize").click(function(e){
+		Whiteboard.currentLineSize = $("#lineSize :selected").val();
 	});
 
 	//submits text
