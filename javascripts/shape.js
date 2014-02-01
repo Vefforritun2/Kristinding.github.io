@@ -47,14 +47,15 @@ var Circle = Shape.extend({
 
 //instance of text
 var Text = Shape.extend({
-	constructor: function(startX, startY, color, font){
+	constructor: function(startX, startY, color, font, fontSize){
 		this.base(startX, startY, color);
 		this.font = font;
+		this.fontSize = fontSize;
 	},
 	draw: function(context) {
 		context.fillStyle = this.color;
+		context.font = this.fontSize + 'px ' + this.font;
 		context.fillText(this.text, this.startX, this.startY);
-		//context.measureText();
 	}
 });
 

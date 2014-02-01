@@ -13,7 +13,7 @@ function createCircle(startX, startY) {
 }
 //create new text
 function createText(startX, startY) {
-	return new Text(startX, startY, Whiteboard.currentColor, Whiteboard.currentFontName); 
+	return new Text(startX, startY, Whiteboard.currentColor, Whiteboard.currentFontName, Whiteboard.currentFontSize); 
 }
 //create new Pen
 function createPen(startX, startY) {
@@ -30,7 +30,7 @@ var Whiteboard = {
 	currentColor: "Black",  
 	currentFontName: "Courier New",
 	//context.lineWidth = 5;  þetta er línustærð, bæta þessu við ef tími gefst
-	//currentFontSize: ....
+	currentFontSize: "12",
 	//array of all the shapes
 	shape: [], 
 	//draw all the shapes
@@ -63,10 +63,20 @@ $(document).ready(function(){
 		Whiteboard.currentColor = "black";
 	});
 
+	//change color
 	$("#colour").click(function(e){
 		Whiteboard.currentColor = $("#colour :selected").val();
-		console.log(Whiteboard.currentColor);
 	})
+
+	//change font size
+	$("#fontSize").click(function(e) {
+		Whiteboard.currentFontSize = $("#fontSize :selected").val();
+	});
+
+	//change font name
+	$("#font").click(function(e){
+		Whiteboard.currentFontName = $("#font :selected").val();
+	});
 
 	//submits text
 	$("#textSubmit").click(function(e){
@@ -120,7 +130,7 @@ $(document).ready(function(){
 			else if( ( factory === "createPen" ) )
 			{
 				var s = new Point(currentShape.endX, currentShape.endY);
-				currentShape.setEndPoint(s);                          //  ----  eitthvað að klikka
+				currentShape.setEndPoint(s);                          
 				currentShape.draw(context);
 				Whiteboard.redraw(context);	
 			}
@@ -133,7 +143,6 @@ $(document).ready(function(){
 		{
 			//adding the new shape to the Whiteboard
 			Whiteboard.shape.push(currentShape);
-			console.log(Whiteboard.shape)
 		}	
 	});
 
