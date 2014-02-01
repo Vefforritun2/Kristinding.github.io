@@ -114,16 +114,17 @@ var Pen = Shape.extend({
 //Reference: http://jsfiddle.net/fWLJ9/
 var uplodedImage = Shape.extend({
 	constructor: function(context){
-		var img = new Image();
-        var url = window.URL || window.webkitURL,
-    	var src = url.createObjectURL(f);
+		img = new Image();
+        url = window.URL || window.webkitURL;
+        f = document.getElementById("imageLoader").files[0];
+    	src = url.createObjectURL(f);
     	img.src = src;
 
     	img.onload = function() {
         context.drawImage(img, 0, 0);
         url.revokeObjectURL(src);
+    	}
     },
-
 	draw: function(context){
 		context.drawImage(img, 0, 0);
         url.revokeObjectURL(src);

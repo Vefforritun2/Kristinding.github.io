@@ -23,6 +23,9 @@ function Point(startX, startY){
 	this.startX = startX;
 	this.startY = startY;
 }
+function createImage(context){
+	return new uplodedImage(context);
+}
 //draw on the board 
 var Whiteboard = {
 	currentColor: "Black",  
@@ -91,7 +94,7 @@ $(document).ready(function(){
 	});
 	//upload drawing
 	//Heimild http://jsfiddle.net/influenztial/qy7h5/
-	var imageLoader = document.getElementById('imageLoader');
+	/*var imageLoader = document.getElementById('imageLoader');
     imageLoader.addEventListener('change', handleImage, false);
 	function handleImage(e)
 	{
@@ -108,7 +111,14 @@ $(document).ready(function(){
 	        img.src = event.target.result;
 	    }
 	    reader.readAsDataURL(e.target.files[0]);     
-	}
+	}*/
+	$("#imageLoader").click(function(e)
+	{
+		var newUploadedImage = createImage(context);
+		newUploadedImage.draw(context);
+		whiteboard.shapes.push(newUploadedImage);  
+	});
+
 	//change color
 	$("#colour").click(function(e){
 		Whiteboard.currentColor = $("#colour :selected").val();
