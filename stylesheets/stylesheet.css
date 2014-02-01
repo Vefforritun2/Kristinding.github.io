@@ -5,10 +5,23 @@ html
   font-family: Arial, Helvetica, sans-serif;
 }
 
-h2, h3
+h2
+{
+  float: right;
+  color: #666666;
+  height: 10px;
+  padding-right: 340px;
+}
+
+h3
+{
+  color: #666666;
+  height: 0px;
+}
+
+#h3head
 {
   text-align: center;
-  color: #666666;
 }
 
 #canvasDiv
@@ -19,10 +32,11 @@ h2, h3
   border-radius:25px;
   padding-top: 5px;
   padding-left: 5px;
-  margin-left: 70px;
+  margin-left: 50px;
   margin-top: 8px;
   background-color: white;
   float: left;
+  padding-right: 10px;
 }
 
 .btnShape, Button
@@ -35,13 +49,14 @@ h2, h3
   font-size: 16px;
   border: white;
   background-color: white;
+  margin-top: 25px;
 }
 
 #shapeButtons
 {
   width: 90px;
   float: left;
-  padding-top: 24px;
+  padding-top: 30px;
   padding-left: 40px;
 }
 
@@ -59,12 +74,26 @@ select {
   -webkit-appearance: none;
   border-radius:20px;
 }
+#selectDiv
+{
+  height: 38px;
+  width: 300px;
+  margin-bottom: 10px;
+  padding-top: 20px;
+}
+
+#h4new
+{
+  float: left;
+  width: 100px;
+  margin: 10px;
+}
 
 #fixButtons
 {
   width: 500px;
   float: center;
-  padding-left: 50px;
+  padding-left: 40px;
 }
 
 .fixbtn
@@ -75,9 +104,9 @@ select {
 
 #changeButtons
 {
-  width: 200px;
-  height: 1000px;
+  width: 300px;
   float: right;
+  margin-top: -14px;
 }
 
 #writeText
