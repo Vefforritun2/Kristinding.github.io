@@ -112,11 +112,11 @@ $(document).ready(function(){
 	    }
 	    reader.readAsDataURL(e.target.files[0]);     
 	}*/
-	$("#imageLoader").click(function(e)
+	$("#imageLoader").on('change', function(e)
 	{
 		var newUploadedImage = createImage(context);
 		newUploadedImage.draw(context);
-		whiteboard.shapes.push(newUploadedImage);  
+		Whiteboard.shapes.push(newUploadedImage);  
 	});
 
 	//change color

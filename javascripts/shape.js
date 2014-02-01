@@ -116,7 +116,7 @@ var uplodedImage = Shape.extend({
 	constructor: function(context){
 		img = new Image();
         url = window.URL || window.webkitURL;
-        cf = document.getElementById("imageLoader").files[0];
+        f = document.getElementById("imageLoader").files[0];
         //console.log(document.getElementById("imageLoader"));
     	src = url.createObjectURL(f);
     	img.src = src;
