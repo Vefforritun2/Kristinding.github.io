@@ -12,7 +12,9 @@
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
         <script src="javascripts/main.js"></script>
         <script src="javascripts/shape.js"></script>
+        <script src="javascripts/load.js"></script>
         <script src="javascripts/Base.js"></script>
+        <script src="http://www.nihilogic.dk/labs/canvas2image/canvas2image.js"></script>
     </head>
     <body>
       <h2>Draw</h2>
@@ -93,10 +95,9 @@
       </div>  
 
       <div id="dldiv">
-          <h3 id ="h4dl">Download drawing</h3>
-          <button id = "btnpdf"> Pdf </button>
-          <button id = "btnpng"> Png </button>
-          <button id = "btnimg"> Image </button>
+          <button id = "dlbtn"> Download drawing (png) </button>
+          <input type="file" id="imageLoader" name="imageLoader"/>
+          <button id = "ulbtn"> Upload drawing (png) </button>
       </div>
 
       <div id="writeText">     

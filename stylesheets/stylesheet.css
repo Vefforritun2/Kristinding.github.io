@@ -147,6 +147,13 @@ select {
   padding-left: 280px;
 }
 
+#dlbtn, #ulbtn
+{
+  width: 250px;
+  float: left;
+
+}
+
 #btn1
 {
   color: #666666;

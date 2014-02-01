@@ -80,6 +80,35 @@ $(document).ready(function(){
 			Whiteboard.redraw(context);
 		}
 	});
+	//download drawing
+	//Heimild http://www.nihilogic.dk/labs/canvas2image/
+	$("#dlbtn").click(function(e)
+	{
+		console.log("hallo");
+		var oCanvas = document.getElementById("myCanvas");  
+		Canvas2Image.saveAsPNG(oCanvas);   
+	  
+	});
+	//upload drawing
+	//Heimild http://jsfiddle.net/influenztial/qy7h5/
+	var imageLoader = document.getElementById('imageLoader');
+    imageLoader.addEventListener('change', handleImage, false);
+	function handleImage(e)
+	{
+	    var reader = new FileReader();
+	    reader.onload = function(event)
+	    {
+	        var img = new Image();
+	        img.onload = function()
+	        {   
+	        	myCanvas.width = img.width;
+            	myCanvas.height = img.height;
+            	context.drawImage(img,0,0);
+	        }
+	        img.src = event.target.result;
+	    }
+	    reader.readAsDataURL(e.target.files[0]);     
+	}
 	//change color
 	$("#colour").click(function(e){
 		Whiteboard.currentColor = $("#colour :selected").val();
