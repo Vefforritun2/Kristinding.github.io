@@ -147,11 +147,31 @@ select {
   padding-left: 280px;
 }
 
-#dlbtn, #ulbtn
+#dlbtn
 {
   width: 250px;
   float: left;
+}
 
+div.upload {
+    width: 250px;
+    margin-top: 25px;
+    margin-left: 10px;
+    border-radius:20px;
+    font-size: 16px;
+    border: white;
+    background: url(http://i.imgur.com/9HQgZBO.png) no-repeat center; 
+    background-size: 250px 50px;
+    float: left;
+
+}
+
+div.upload input {
+    display: block !important;
+    width: 250px !important;
+    height: 50px !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
 }
 
 #btn1
