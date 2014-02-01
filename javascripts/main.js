@@ -31,11 +31,13 @@ var Whiteboard = {
 	currentFontSize: "12",
 	//array of all the shapes
 	shape: [], 
+	redo: [],
 	//draw all the shapes
 	redraw: function(context){
 		for (var i = 0 ; i < this.shape.length ; i++ )
 		{
 			this.shape[i].draw(context);
+			console.log("draw");
 		}
 	}
 };
@@ -57,6 +59,15 @@ $(document).ready(function(){
 		factory = "createPen";                    
 		nextShape = eval(factory);
 		Whiteboard.currentColor = "black";
+	});
+	//undo
+	$("#btn6").click(function(e){
+		context.clearRect(0, 0, 700, 410);
+		Whiteboard.redo.push(Whiteboard.shape[Whiteboard.shape.length - 1]);
+		console.log(Whiteboard.shape[Whiteboard.shape.length - 1]);
+		Whiteboard.shape.pop(Whiteboard.shape[Whiteboard.shape.length - 1]);
+		console.log(Whiteboard.shape[Whiteboard.shape.length - 1]);
+		Whiteboard.redraw(context);
 	});
 	//change color
 	$("#colour").click(function(e){

@@ -87,8 +87,13 @@ var Pen = Shape.extend({
             context.beginPath();
             context.moveTo(this.arrayOfGrids[i].startX, this.arrayOfGrids[i].startY);	
 			context.lineTo(this.arrayOfGrids[i+1].startX, this.arrayOfGrids[i+1].startY);
-			//context.arc( this.arrayOfGrids[i].startX, this.arrayOfGrids[i].startY, this.lineSize/2 , 0, 2 * Math.PI, false );
 			context.stroke();
+
+			//context.beginPath();
+			//context.arc( this.arrayOfGrids[i].startX, this.arrayOfGrids[i].startY, this.lineSize/10 , 0, 2 * Math.PI, false );
+			//context.fillStyle = this.color;
+			//context.fill();
+			//context.stroke();
 
         }
 	}
