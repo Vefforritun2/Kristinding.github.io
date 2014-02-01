@@ -74,7 +74,7 @@ select {
   -webkit-appearance: none;
   border-radius:20px;
 }
-#selectDiv
+.selectDiv
 {
   height: 38px;
   width: 300px;
@@ -87,6 +87,13 @@ select {
   float: left;
   width: 100px;
   margin: 10px;
+}
+
+#h4dl
+{
+  float: left;
+  width: 200px;
+  margin-top: 40px;
 }
 
 #fixButtons
@@ -132,6 +139,12 @@ select {
 {
   float: center;
   width: 170px;
+}
+
+#dldiv
+{
+  width: 550px;
+  padding-left: 280px;
 }
 
 #btn1
@@ -186,17 +199,6 @@ select {
   color: white;
 }
 
-#btn5:active 
-{
-  background: #996666;
-  color: white;
-}
-
-#btn5:active
-{
-    background: #996666;
-    color: white;
-}
 
 
 
