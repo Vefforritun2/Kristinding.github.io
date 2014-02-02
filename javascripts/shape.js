@@ -132,3 +132,4 @@ var uplodedImage = Shape.extend({
 	}
 });
 
+
