@@ -151,6 +151,8 @@ select {
 {
   width: 250px;
   float: left;
+  border: #039D03;
+  border-style: solid;
 }
 
 div.upload {
@@ -163,7 +165,6 @@ div.upload {
     background: url(http://i.imgur.com/9HQgZBO.png) no-repeat center; 
     background-size: 250px 50px;
     float: left;
-
 }
 
 div.upload input {
@@ -198,6 +199,18 @@ div.upload input {
 {
   background-color: #FF6666;
   color: white;
+}
+#btn9
+{
+  color: #FF6666;
+}
+#btn7
+{
+  color: #FF6666;
+}
+#btn6
+{
+  color: #FF6666;
 }
 
 #btn1:hover
