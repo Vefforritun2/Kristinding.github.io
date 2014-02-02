@@ -70,7 +70,7 @@ var Pen = Shape.extend({
 		this.point = [];
 		this.arrayOfGrids = []; 
 	},
-	arrayOfGrids: [],
+	//arrayOfGrids: [],
 	setEndPoint: function(point){
 		this.arrayOfGrids.push(point);                         //   ---   eitthvað að klikka
 	},
@@ -96,6 +96,17 @@ var Pen = Shape.extend({
 			if( this.arrayOfGrids === pt){
 				return true;
 			}
+		}
+	},
+	move: function(context)
+	{	
+		for (var i = 0; i < this.arrayOfGrids.length; i++) 
+		{
+			console.log(i);
+			console.log(this.arrayOfGrids.length-1);
+			console.log("x" + this.arrayOfGrids[i].startX);
+			this.arrayOfGrids[i].startX = this.offsetingx - (this.mouseDownX -this.arrayOfGrids[i].startX);
+			this.arrayOfGrids[i].startY = this.offsetingy - (this.mouseDownY -this.arrayOfGrids[i].startY);
 		}
 	}
 });

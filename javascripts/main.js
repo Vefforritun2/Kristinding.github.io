@@ -53,25 +53,22 @@ $(document).ready(function(){
 	var currentShape;
 	var factory = "createPen";
 	var textString;
-	var HEIGHT = canvas.height;
-	var WIDTH = canvas.width;
 	var selectedClicked = false;
 	var isDrag = false;
 	var mySel;
 	var offsetx, offsety;
 	var lastColor;
-  	if (mySel != null) {
+	var mouseDownX;
+	var mouseDownY;
+  	/*if (mySel != null) {
       context.strokeStyle = mySelColor;
       context.lineWidth = mySelWidth;
       context.strokeRect(mySel.x,mySel.y,mySel.w,mySel.h);
-    }
+    }*/
     function selectShape(startX, startY, context, shape)
 	{
 		if(Whiteboard.shape.length > 0)
 		{
-			//this.startX = startX;
-			//this.startY = startY;
-			console.log(Whiteboard.shape.length);
 			var ghostcanvas = document.createElement("canvas");
 			var gctx = ghostcanvas.getContext("2d");
 			//var offsetx, offsety;
@@ -79,6 +76,7 @@ $(document).ready(function(){
 		  	ghostcanvas.width = myCanvas.width;
 			for (var i = 0 ; i < Whiteboard.shape.length ; i++ )
 				{
+					console.log("shape" + shape);
 					shape[i].draw(gctx);
 					var imageData = gctx.getImageData(startX, startY, 1, 1);
 					gctx.clearRect(0, 0, 700, 410);	
@@ -86,7 +84,6 @@ $(document).ready(function(){
 					{
 						lastColor = shape[i].color;
 						shape[i].color = "magenta";
-						
 						context.clearRect(0, 0, 700, 410);	
 						Whiteboard.redraw(context);
 						return shape[i];
@@ -127,6 +124,7 @@ $(document).ready(function(){
 	$("#btn9").click(function(e){
 		selectedClicked = true;
 	});
+	//no selected
 	$(".btnShape").click(function(e){
 		selectedClicked = false;
 	});
@@ -136,7 +134,6 @@ $(document).ready(function(){
 	{
 		var oCanvas = document.getElementById("myCanvas");  
 		Canvas2Image.saveAsPNG(oCanvas);   
-	  
 	});
 	//upload drawing
 	$("#imageLoader").on('change', function(e)
@@ -178,7 +175,7 @@ $(document).ready(function(){
 		var backY = -e.pageY + 7;  	                                //     -- útfæra betur
 		$("#writeText").offset({ top: backY, left:  backX});	
 	});
-	//Event handler for clicking a shape
+	//Event handler for choosing a shape
 	$(".btnShape").click(function(e){
 		factory = $(this).attr("data-shape");
 		//we need to change/evaluate the factory string to function
@@ -187,7 +184,6 @@ $(document).ready(function(){
 	//drawing or moving shape 
 	$("#myCanvas").mousedown(function(e){
 		//gives us the x and y coordinate where the mouse is pressed down
-		console.log("wh le" + Whiteboard.shape.length);
 		startX = e.pageX - this.offsetLeft;
 		startY = e.pageY - this.offsetTop;
 		if(selectedClicked)
@@ -196,6 +192,8 @@ $(document).ready(function(){
 			mySel = selectShape(startX, startY, context, Whiteboard.shape);
 			if( mySel )
 			{
+				mouseDownX = e.pageX;
+				mouseDownY = e.pageY;
 				offsetx = e.pageX - mySel.startX;
 	      		offsety = e.pageY - mySel.startY;
 	      		offsetxend = e.pageX - mySel.endX;
@@ -218,6 +216,7 @@ $(document).ready(function(){
 		if( isDrawing === true ){
 				currentShape.endX = e.pageX - this.offsetLeft;
 				currentShape.endY = e.pageY - this.offsetTop;
+				currentShape.shapeType = factory;
 			if( ( factory !== "createText" ) && ( factory !== "createPen" ) ){
 				context.clearRect(0, 0, 700, 410);	
 				//drawing all the shapes
@@ -235,13 +234,25 @@ $(document).ready(function(){
 		}
 		else if (selectedClicked && isDrag)
 		{
-			mySel.startX = e.pageX - offsetx;
-      		mySel.startY = e.pageY - offsety;
-      		mySel.endX = e.pageX - offsetxend;
-			mySel.endY = e.pageY - offsetyend;
-			console.log("endX" + mySel.endX);
-			context.clearRect(0, 0, 700, 410);	
-			Whiteboard.redraw(context);
+			if(mySel.shapeType === "createPen")
+			{
+				mySel.offsetingx = e.pageX ;
+				mySel.offsetingy = e.pageY ;
+				mySel.mouseDownX = mouseDownX;
+				mySel.mouseDownY = mouseDownY;
+				mySel.move(context);
+				context.clearRect(0, 0, 700, 410);	
+				Whiteboard.redraw(context);
+			}	
+			else
+			{
+				mySel.startX = e.pageX - offsetx;
+	      		mySel.startY = e.pageY - offsety;
+	      		mySel.endX = e.pageX - offsetxend;
+				mySel.endY = e.pageY - offsetyend;
+				context.clearRect(0, 0, 700, 410);	
+				Whiteboard.redraw(context);
+			}	
 		}
 	});
 	$("#myCanvas").mouseup(function(e) {
@@ -255,6 +266,7 @@ $(document).ready(function(){
 			isDrag = false;
 			//selectedClicked = false;
 		}	
+		
 		isDrawing = false;
 		if( ( factory !== "createText" ))
 		{
