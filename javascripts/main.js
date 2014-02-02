@@ -53,6 +53,47 @@ $(document).ready(function(){
 	var currentShape;
 	var factory = "createPen";
 	var textString;
+	var HEIGHT = canvas.height;
+	var WIDTH = canvas.width;
+	var selectedClicked = false;
+	var isDrag = false;
+	var mySel;
+	var offsetx, offsety;
+	var lastColor;
+  	if (mySel != null) {
+      context.strokeStyle = mySelColor;
+      context.lineWidth = mySelWidth;
+      context.strokeRect(mySel.x,mySel.y,mySel.w,mySel.h);
+    }
+    function selectShape(startX, startY, context, shape)
+	{
+		if(Whiteboard.shape.length > 0)
+		{
+			//this.startX = startX;
+			//this.startY = startY;
+			console.log(Whiteboard.shape.length);
+			var ghostcanvas = document.createElement("canvas");
+			var gctx = ghostcanvas.getContext("2d");
+			//var offsetx, offsety;
+		  	ghostcanvas.height = myCanvas.height;
+		  	ghostcanvas.width = myCanvas.width;
+			for (var i = 0 ; i < Whiteboard.shape.length ; i++ )
+				{
+					shape[i].draw(gctx);
+					var imageData = gctx.getImageData(startX, startY, 1, 1);
+					gctx.clearRect(0, 0, 700, 410);	
+					if(imageData.data[3]>0)
+					{
+						lastColor = shape[i].color;
+						shape[i].color = "magenta";
+						
+						context.clearRect(0, 0, 700, 410);	
+						Whiteboard.redraw(context);
+						return shape[i];
+					}	
+				}
+		}	
+	}
 	//Clear the board
 	$("#btn8").click(function(e){
 		context.clearRect(0, 0, 700, 410);
@@ -82,11 +123,17 @@ $(document).ready(function(){
 			Whiteboard.redraw(context);
 		}
 	});
+	//select
+	$("#btn9").click(function(e){
+		selectedClicked = true;
+	});
+	$(".btnShape").click(function(e){
+		selectedClicked = false;
+	});
 	//download drawing
 	//Heimild http://www.nihilogic.dk/labs/canvas2image/
 	$("#dlbtn").click(function(e)
 	{
-		console.log("hallo");
 		var oCanvas = document.getElementById("myCanvas");  
 		Canvas2Image.saveAsPNG(oCanvas);   
 	  
@@ -137,19 +184,33 @@ $(document).ready(function(){
 		//we need to change/evaluate the factory string to function
 		nextShape = eval(factory);
 	});
-	//drawing shape
+	//drawing or moving shape 
 	$("#myCanvas").mousedown(function(e){
 		//gives us the x and y coordinate where the mouse is pressed down
+		console.log("wh le" + Whiteboard.shape.length);
 		startX = e.pageX - this.offsetLeft;
 		startY = e.pageY - this.offsetTop;
-		isDrawing = true;
-		currentShape = nextShape(startX, startY);
-		if(factory === "createText")
+		if(selectedClicked)
 		{
-			//$("#writeText").offset({ top: 0, left: 0});
-			$("#writeText").offset({ top: e.pageY, left: e.pageX});
-			$("#writeText").show();
-		}
+			$("#myCanvas").css('cursor', 'move');
+			mySel = selectShape(startX, startY, context, Whiteboard.shape);
+			console.log("mySel" + mySel.startX);
+			offsetx = e.pageX - mySel.startX;
+      		offsety = e.pageY - mySel.startY;
+      		offsetxend = e.pageX - mySel.endX;
+      		offsetyend = e.pageY - mySel.endY;
+      		isDrag = true;
+		}	
+		else
+		{
+			isDrawing = true;
+			currentShape = nextShape(startX, startY);
+			if(factory === "createText")
+			{
+				$("#writeText").offset({ top: e.pageY, left: e.pageX});
+				$("#writeText").show();
+			}
+		}	
 	});
 	$("#myCanvas").mousemove(function(e) {
 		if( isDrawing === true ){
@@ -170,8 +231,28 @@ $(document).ready(function(){
 				currentShape.draw(context);
 			}
 		}
+		else if (selectedClicked && isDrag)
+		{
+			mySel.startX = e.pageX - offsetx;
+      		mySel.startY = e.pageY - offsety;
+      		mySel.endX = e.pageX - offsetxend;
+			mySel.endY = e.pageY - offsetyend;
+			console.log("endX" + mySel.endX);
+			context.clearRect(0, 0, 700, 410);	
+			Whiteboard.redraw(context);
+		}
 	});
 	$("#myCanvas").mouseup(function(e) {
+		if(selectedClicked)
+		{
+			$("#myCanvas").css('cursor', 'crosshair');
+			mySel.color = lastColor;
+			context.clearRect(0, 0, 700, 410);	
+			Whiteboard.redraw(context);
+			mySel = null;
+			isDrag = false;
+			//selectedClicked = false;
+		}	
 		isDrawing = false;
 		if( ( factory !== "createText" ))
 		{
@@ -183,7 +264,6 @@ $(document).ready(function(){
 	$("#btn9").mousedown(function(e){
 		
 		if ( Shape.contains ){
-
 		}
 	});
 });
