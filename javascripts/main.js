@@ -194,12 +194,14 @@ $(document).ready(function(){
 		{
 			$("#myCanvas").css('cursor', 'move');
 			mySel = selectShape(startX, startY, context, Whiteboard.shape);
-			console.log("mySel" + mySel.startX);
-			offsetx = e.pageX - mySel.startX;
-      		offsety = e.pageY - mySel.startY;
-      		offsetxend = e.pageX - mySel.endX;
-      		offsetyend = e.pageY - mySel.endY;
-      		isDrag = true;
+			if( mySel )
+			{
+				offsetx = e.pageX - mySel.startX;
+	      		offsety = e.pageY - mySel.startY;
+	      		offsetxend = e.pageX - mySel.endX;
+	      		offsetyend = e.pageY - mySel.endY;
+	      		isDrag = true;
+	      	}
 		}	
 		else
 		{
@@ -243,7 +245,7 @@ $(document).ready(function(){
 		}
 	});
 	$("#myCanvas").mouseup(function(e) {
-		if(selectedClicked)
+		if(selectedClicked && mySel)
 		{
 			$("#myCanvas").css('cursor', 'crosshair');
 			mySel.color = lastColor;
