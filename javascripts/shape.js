@@ -5,7 +5,6 @@ var Shape = Base.extend({
 		this.color = color;
 	}
 });
-
 //Instance of line
 var Line = Shape.extend({
 	constructor: function(startX, startY, color, lineSize){
@@ -21,10 +20,8 @@ var Line = Shape.extend({
 		context.stroke();
 	},
 	contains: function (pt){
-
 	}
 });
-
 //Instance of rectangle
 var Rect = Shape.extend({
 	constructor: function(startX, startY, color, lineSize){
@@ -38,7 +35,6 @@ var Rect = Shape.extend({
 		context.strokeRect(this.startX, this.startY, this.endX - this.startX, this.endY - this.startY);
 	}
 });
-
 //instance of circle
 var Circle = Shape.extend({
 	constructor: function(startX, startY, color, lineSize){
@@ -53,7 +49,6 @@ var Circle = Shape.extend({
 		context.stroke( );
 	}
 });
-
 //instance of text
 var Text = Shape.extend({
 	constructor: function(startX, startY, color, font, fontSize){
@@ -67,7 +62,6 @@ var Text = Shape.extend({
 		context.fillText(this.text, this.startX, this.startY);
 	}
 });
-
 //instance of pen
 var Pen = Shape.extend({
 	constructor: function(startX, startY, color, lineSize){
@@ -76,9 +70,7 @@ var Pen = Shape.extend({
 		this.point = [];
 		this.arrayOfGrids = []; 
 	},
-
 	arrayOfGrids: [],
-
 	setEndPoint: function(point){
 		this.arrayOfGrids.push(point);                         //   ---   eitthvað að klikka
 	},
@@ -91,13 +83,11 @@ var Pen = Shape.extend({
             context.moveTo(this.arrayOfGrids[i].startX, this.arrayOfGrids[i].startY);	
 			context.lineTo(this.arrayOfGrids[i+1].startX, this.arrayOfGrids[i+1].startY);
 			context.stroke();
-
 			//context.beginPath();
 			//context.arc( this.arrayOfGrids[i].startX, this.arrayOfGrids[i].startY, this.lineSize/10 , 0, 2 * Math.PI, false );
 			//context.fillStyle = this.color;
 			//context.fill();
 			//context.stroke();
-
         }
 	},
 	contains: function (pt){
@@ -109,7 +99,6 @@ var Pen = Shape.extend({
 		}
 	}
 });
-
 //Upload photo 
 //Reference: http://jsfiddle.net/fWLJ9/
 var uplodedImage = Shape.extend({
@@ -120,7 +109,6 @@ var uplodedImage = Shape.extend({
         //console.log(document.getElementById("imageLoader"));
     	src = url.createObjectURL(f);
     	img.src = src;
-
     	img.onload = function() {
         	context.drawImage(img, 0, 0);
         	url.revokeObjectURL(src);
@@ -131,5 +119,3 @@ var uplodedImage = Shape.extend({
         url.revokeObjectURL(src);
 	}
 });
-
-

@@ -26,9 +26,6 @@ function Point(startX, startY){
 function createImage(context){
 	return new uplodedImage(context);
 }
-
-
-
 //draw on the board 
 var Whiteboard = {
 	currentColor: "Black",  
@@ -58,27 +55,26 @@ $(document).ready(function(){
 	var textString;
 	var HEIGHT = canvas.height;
 	var WIDTH = canvas.width;
-
 	var selectedClicked = false;
 	var isDrag = false;
 	var mySel;
 	var offsetx, offsety;
 	var lastColor;
-
   	if (mySel != null) {
       context.strokeStyle = mySelColor;
       context.lineWidth = mySelWidth;
       context.strokeRect(mySel.x,mySel.y,mySel.w,mySel.h);
     }
-
     function selectShape(startX, startY, context, shape)
 	{
 		if(Whiteboard.shape.length > 0)
 		{
+			//this.startX = startX;
+			//this.startY = startY;
 			console.log(Whiteboard.shape.length);
 			var ghostcanvas = document.createElement("canvas");
 			var gctx = ghostcanvas.getContext("2d");
-			var offsetx, offsety;
+			//var offsetx, offsety;
 		  	ghostcanvas.height = myCanvas.height;
 		  	ghostcanvas.width = myCanvas.width;
 			for (var i = 0 ; i < Whiteboard.shape.length ; i++ )
@@ -86,7 +82,6 @@ $(document).ready(function(){
 					shape[i].draw(gctx);
 					var imageData = gctx.getImageData(startX, startY, 1, 1);
 					gctx.clearRect(0, 0, 700, 410);	
-
 					if(imageData.data[3]>0)
 					{
 						lastColor = shape[i].color;
@@ -99,7 +94,6 @@ $(document).ready(function(){
 				}
 		}	
 	}
-
 	//Clear the board
 	$("#btn8").click(function(e){
 		context.clearRect(0, 0, 700, 410);
@@ -135,7 +129,6 @@ $(document).ready(function(){
 	});
 	$(".btnShape").click(function(e){
 		selectedClicked = false;
-
 	});
 	//download drawing
 	//Heimild http://www.nihilogic.dk/labs/canvas2image/
@@ -191,7 +184,6 @@ $(document).ready(function(){
 		//we need to change/evaluate the factory string to function
 		nextShape = eval(factory);
 	});
-
 	//drawing or moving shape 
 	$("#myCanvas").mousedown(function(e){
 		//gives us the x and y coordinate where the mouse is pressed down
@@ -205,6 +197,9 @@ $(document).ready(function(){
 			console.log("mySel" + mySel.startX);
 			offsetx = e.pageX - mySel.startX;
       		offsety = e.pageY - mySel.startY;
+      		offsetxend = e.pageX - mySel.endX;
+      		offsetyend = e.pageY - mySel.endY;
+      		isDrag = true;
 		}	
 		else
 		{
@@ -217,8 +212,6 @@ $(document).ready(function(){
 			}
 		}	
 	});
-
-
 	$("#myCanvas").mousemove(function(e) {
 		if( isDrawing === true ){
 				currentShape.endX = e.pageX - this.offsetLeft;
@@ -238,12 +231,12 @@ $(document).ready(function(){
 				currentShape.draw(context);
 			}
 		}
-		else if (selectedClicked)
+		else if (selectedClicked && isDrag)
 		{
 			mySel.startX = e.pageX - offsetx;
       		mySel.startY = e.pageY - offsety;
-      		mySel.endX = e.pageX - this.offsetLeft;
-			mySel.endY = e.pageY - this.offsetTop;
+      		mySel.endX = e.pageX - offsetxend;
+			mySel.endY = e.pageY - offsetyend;
 			console.log("endX" + mySel.endX);
 			context.clearRect(0, 0, 700, 410);	
 			Whiteboard.redraw(context);
@@ -257,7 +250,8 @@ $(document).ready(function(){
 			context.clearRect(0, 0, 700, 410);	
 			Whiteboard.redraw(context);
 			mySel = null;
-			selectedClicked = false;
+			isDrag = false;
+			//selectedClicked = false;
 		}	
 		isDrawing = false;
 		if( ( factory !== "createText" ))
@@ -270,7 +264,6 @@ $(document).ready(function(){
 	$("#btn9").mousedown(function(e){
 		
 		if ( Shape.contains ){
-
 		}
 	});
 });
