@@ -43,6 +43,28 @@ var Whiteboard = {
 		}
 	}
 };
+	//change color
+	function SelectChanged()
+	{
+		Whiteboard.currentColor = $("#colour :selected").val();
+		console.log("Whiteboard color: " + Whiteboard.currentColor);
+	}
+	//change font size
+	function SelectFontSize()
+	{
+		Whiteboard.currentFontSize = $("#fontSize :selected").val();
+	}
+	//change font name
+	function SelectFont()
+	{
+		Whiteboard.currentFontName = $("#font :selected").val();
+	}
+	//change line size
+	function SelectLineSize()
+	{
+		Whiteboard.currentLineSize = $("#lineSize :selected").val();
+	}
+
 $(document).ready(function(){
 	var canvas = document.getElementById("myCanvas");
 	var context = canvas.getContext("2d");
@@ -142,22 +164,7 @@ $(document).ready(function(){
 		newUploadedImage.draw(context);
 		Whiteboard.shape.push(newUploadedImage);  
 	});
-	//change color
-	$("#colour").click(function(e){
-		Whiteboard.currentColor = $("#colour :selected").val();
-	})
-	//change font size
-	$("#fontSize").click(function(e) {
-		Whiteboard.currentFontSize = $("#fontSize :selected").val();
-	});
-	//change font name
-	$("#font").click(function(e){
-		Whiteboard.currentFontName = $("#font :selected").val();
-	});
-	//change line size
-	$("#lineSize").click(function(e){
-		Whiteboard.currentLineSize = $("#lineSize :selected").val();
-	});
+	
 	//submits text
 	$("#textSubmit").click(function(e){
 		textString = $("#textBox").val();

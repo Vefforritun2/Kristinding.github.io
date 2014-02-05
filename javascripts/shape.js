@@ -12,6 +12,7 @@ var Line = Shape.extend({
 		this.lineSize = lineSize;
 	},
 	draw: function(context) {
+		console.log("color: " + this.color );
 		context.strokeStyle = this.color;
 		context.lineWidth = this.lineSize;
 		context.beginPath();
@@ -102,9 +103,10 @@ var Pen = Shape.extend({
 	{	
 		for (var i = 0; i < this.arrayOfGrids.length; i++) 
 		{
-			this.arrayOfGrids[i].startX = this.offsetingx - (this.mouseDownX -this.arrayOfGrids[i].startX);
-			this.arrayOfGrids[i].startY = this.offsetingy - (this.mouseDownY -this.arrayOfGrids[i].startY);
+			this.arrayOfGrids[i].startX = this.offsetingx - (this.mouseDownX -(this.arrayOfGrids[i].startX-this.offsetLeft));
+			this.arrayOfGrids[i].startY = this.offsetingy - (this.mouseDownY -(this.arrayOfGrids[i].startY-this.offsetTop));
 		}
+		i=0;
 	}
 });
 //Upload photo 
